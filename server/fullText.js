@@ -1,5 +1,6 @@
-const completeText = {
-  'Just for today, my thoughts will be on my recovery, living and enjoying life without the use of drugs.': {
+module.exports = [
+  {
+    title: 'Just for today, my thoughts will be on my recovery, living and enjoying life without the use of drugs.',
     'Am I clean today?': '',
     'How have I acted differently?': '',
     'Did my disease run my life today?': '',
@@ -12,7 +13,9 @@ const completeText = {
     'Was I happy?': '',
     'Was I serene?': '',
   },
-  'Just for today I will have faith in someone in NA who believes in me and wants to help me in my recovery.': {
+
+  {
+    title: 'Just for today I will have faith in someone in NA who believes in me and wants to help me in my recovery.',
     'Did I talk to my sponsor today?': '',
     'Did I attend a meeting today?': '',
     'Where?': '',
@@ -20,7 +23,9 @@ const completeText = {
     'Who are the people in my life that I trust today?': '',
     'Who has trust in me today?': '',
   },
-  'Just for today I will have a program; I will try to follow it to the best of my ability.': {
+
+  {
+    title: 'Just for today I will have a program; I will try to follow it to the best of my ability.',
     'Did I read from our literature today?': '',
     'What steps did I consciously work?': '',
     'Did I admit my powerlessness today?': '',
@@ -32,7 +37,8 @@ const completeText = {
     'Did I worry about yesterday or tomorrow?': '',
     'Can I accept myself as I am today?': '',
   },
-  'Just for today, through NA, I will try to get a better perspective on my life.': {
+  {
+    title: 'Just for today, through NA, I will try to get a better perspective on my life.',
     'Did I feel like I was a part of humanity today?': '',
     'Did I allow myself to become obsessed by anything today?': '',
     'What has God given me to be grateful for today?': '',
@@ -44,18 +50,17 @@ const completeText = {
     'What spiritual principles have I been able to practice in my life today?': '',
     'Was the most important thing in my life today staying clean?': '',
   },
-  'Just for today I will be unafraid, my thoughts will be on my new associations, people who are not using and have found a new way of life. So long as I follow that way, I have nothing to fear.':
-    {
-      'Have I given of myself today without expecting anything in return?': '',
-      'Was there fear in my life today?': '',
-      'Did I feel intense joy or pain?': '',
-      'Did I call or visit someone in the program today?': '',
-      'Did I pray for the well-being of another today?': '',
-      'Was I happy today?': '',
-      'Have I been peaceful today?': '',
-      'Did I consciously remember that I have a choice today?': '',
-    },
-  'Dear God, show me what I have done right and wrong today. Show me how I can better live and serve your will tomorrow.': {
-    Notes: '',
+  {
+    title:
+      'Just for today I will be unafraid, my thoughts will be on my new associations, people who are not using and have found a new way of life. So long as I follow that way, I have nothing to fear.',
+    'Have I given of myself today without expecting anything in return?': '',
+    'Was there fear in my life today?': '',
+    'Did I feel intense joy or pain?': '',
+    'Did I call or visit someone in the program today?': '',
+    'Did I pray for the well-being of another today?': '',
+    'Was I happy today?': '',
+    'Have I been peaceful today?': '',
+    'Did I consciously remember that I have a choice today?': '',
   },
-};
+  { title: 'Dear God, show me what I have done right and wrong today. Show me how I can better live and serve your will tomorrow.', Notes: '' },
+];

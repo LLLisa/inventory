@@ -7,12 +7,24 @@ import { pageLoader } from './loaders';
 const formRouter = createBrowserRouter([
   {
     path: '/',
-    element: <StartPage />,
+    element: (
+      <>
+        <Header />
+        <StartPage />
+        <Footer />
+      </>
+    ),
     errorElement: <ErrorPage />,
   },
   {
     path: '/:pageNum',
-    element: <Form />,
+    element: (
+      <>
+        <Header />
+        <Form />
+        <Footer />
+      </>
+    ),
     errorElement: <ErrorPage />,
     loader: pageLoader,
   },
@@ -21,9 +33,9 @@ const formRouter = createBrowserRouter([
 export default function () {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <RouterProvider router={formRouter} />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

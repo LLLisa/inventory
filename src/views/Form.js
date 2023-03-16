@@ -1,21 +1,9 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useLoaderData } from 'react-router-dom';
 
 export default function () {
-  const { pageNum } = useParams();
+  const data = useLoaderData();
 
-  const { isLoading, error, data } = useQuery('singlePage', () =>
-    fetch(`/page/${pageNum}`).then((res) => res.json())
-  );
-
-  if (isLoading) return 'Loading...';
-
-  if (error) return 'An error has occurred: ' + error.message;
-
-  console.log(data);
-
-  // return <>Form</>;
   return (
     <form>
       <h2>{data.title}</h2>

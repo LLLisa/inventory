@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Header, StartPage, Form, Footer } from './views';
+import { pageLoader } from './loaders';
 
 const formRouter = createBrowserRouter([
   {
@@ -10,6 +11,7 @@ const formRouter = createBrowserRouter([
   {
     path: '/:pageNum',
     element: <Form />,
+    loader: pageLoader,
   },
 ]);
 

@@ -3,17 +3,18 @@ import { Link, useParams } from 'react-router-dom';
 
 export default function () {
   const pageNum = useParams().pageNum * 1;
-  console.log(pageNum);
 
   return (
     <div>
-      <h1>Living the Program</h1>
+      <Link to={'/'}>
+        <h1>Living the Program</h1>
+      </Link>
       <nav>
         <Link to={`/${pageNum - 1}`}>
-          <button>back</button>
+          <button disabled={!Number.isInteger(pageNum) || pageNum <= 0}>back</button>
         </Link>
-        <Link to={`/${pageNum + 1}`}>
-          <button>forward</button>
+        <Link to={Number.isInteger(pageNum) ? `/${pageNum + 1}` : '/0'}>
+          <button disabled={pageNum >= 5}>forward</button>
         </Link>
       </nav>
     </div>

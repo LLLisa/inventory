@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function () {
-  return <>Footer</>;
+  return <div>Footer</div>;
 }

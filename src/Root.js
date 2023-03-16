@@ -1,11 +1,23 @@
 import React from 'react';
-import { Header, Form, Footer } from './views';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Header, StartPage, Form, Footer } from './views';
+
+const formRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <StartPage />,
+  },
+  {
+    path: '/:pageNum',
+    element: <Form />,
+  },
+]);
 
 export default function () {
   return (
     <>
       <Header />
-      <Form />
+      <RouterProvider router={formRouter} />
       <Footer />
     </>
   );

@@ -5,7 +5,7 @@ export default function () {
   const pageNum = useParams().pageNum * 1;
 
   return (
-    <div>
+    <header>
       <Link to={'/'}>
         <h1>Living the Program</h1>
       </Link>
@@ -17,6 +17,6 @@ export default function () {
           <button disabled={pageNum >= 5}>forward</button>
         </Link>
       </nav>
-    </div>
+    </header>
   );
 }

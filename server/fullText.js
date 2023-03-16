@@ -116,6 +116,6 @@ module.exports = [
   {
     title:
       'Dear God, show me what I have done right and wrong today. Show me how I can better live and serve your will tomorrow.',
-    prompts: [],
+    prompts: [{ text: 'Notes:', type: promptType.bigText }],
   },
 ];

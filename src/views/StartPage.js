@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function () {
   return (
     <div>
-      <h3>Begin Inventory</h3>
+      <Link to='/0'>
+        <h3>Begin Inventory</h3>
+      </Link>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useLoaderData, useParams } from 'react-router-dom';
-import OutputForm from '../OutputForm';
+import { useParams } from 'react-router-dom';
+import outputForm from '../outputForm';
 import fullText from '../fullText';
 
 export default function () {
   const { pageNum } = useParams();
   const page = fullText[pageNum];
+  const [formValues, setFormValues] = useState(outputForm);
 
   const promptTypes = {
     yesNo: 'yesNo',
@@ -25,9 +26,22 @@ export default function () {
           </div>
         );
       case promptTypes.smallText:
-        return <input name={prompt.text} value={page[prompt.text]}></input>;
+        return (
+          <input
+            name={prompt.text}
+            value={formValues[prompt.text]}
+            onChange={handleOnChange}
+          ></input>
+        );
       case promptTypes.bigText:
-        return <input className='bigText' name={prompt.text} value={page[prompt.text]}></input>;
+        return (
+          <input
+            className='bigText'
+            name={prompt.text}
+            value={formValues[prompt.text]}
+            onChange={handleOnChange}
+          ></input>
+        );
       default:
         break;
     }
@@ -35,13 +49,12 @@ export default function () {
 
   const handleOnChange = (ev) => {
     if (ev.target.type !== 'radio') ev.preventDefault();
-    console.log(ev.target.name);
-    page[ev.target.name] = ev.target.value;
-    console.log(page);
+    setFormValues({ ...formValues, [ev.target.name]: ev.target.value });
+    console.log(formValues);
   };
 
   return (
-    <form onChange={handleOnChange}>
+    <form>
       <h2>{page.title}</h2>
       <ul>
         {page.prompts.map((prompt, index) => {

@@ -1,9 +1,10 @@
 import React from 'react';
-import OutputForm from '../OutputForm';
+import OutputForm from '../outputForm';
+import fullText from '../fullText';
 
 export default function () {
   const handleDownload = () => {
-    console.dir(OutputForm);
+    console.dir(fullText);
   };
 
   return (

@@ -17,3 +17,5 @@ export async function fullTextLoader({ params }) {
     throw error;
   }
 }
+
+export function generateHTML(form) {}

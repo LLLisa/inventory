@@ -2,25 +2,19 @@ export default function (formData) {
   const promptArray = Object.keys(formData);
   const responseArray = Object.values(formData);
 
+  const currentDate = new Date().toDateString();
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Whiteboard</title>
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      padding: 2rem;
-    }
-    p{
-      font-size: larger;
-    }
-  </style>
+  <title>Daily Inventory for ${currentDate}</title>
 </head>
 <body>
   <h1>Living the Program</h1>
+  <div>${currentDate}</div>
   <h2>What Worked for Us: NA Daily Journal</h2>
   <p>The purpose of this daily inventory is to keep track of who we are and what we are
     doing today.

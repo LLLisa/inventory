@@ -14,12 +14,23 @@ export default function () {
   };
 
   const inputFields = (prompt) => {
+    const isChecked = (text) => {
+      console.log(text, formValues[prompt]);
+      return formValues[text] === 'yes';
+    };
+
     switch (prompt.type) {
       case promptTypes.yesNo:
         return (
           <div>
             yes
-            <input name={prompt.text} value='yes' type='radio' onChange={handleOnChange}></input>
+            <input
+              name={prompt.text}
+              checked={isChecked(prompt.text)}
+              value='yes'
+              type='radio'
+              onChange={handleOnChange}
+            ></input>
             no
             <input name={prompt.text} value='no' type='radio' onChange={handleOnChange}></input>
           </div>
@@ -28,6 +39,7 @@ export default function () {
         return (
           <input
             name={prompt.text}
+            checked={isChecked(prompt.text)}
             value={formValues[prompt.text]}
             onChange={handleOnChange}
           ></input>
@@ -50,7 +62,6 @@ export default function () {
     if (ev.target.type !== 'radio') ev.preventDefault();
     setFormValues({ ...formValues, [ev.target.name]: ev.target.value });
     outputForm[ev.target.name] = ev.target.value;
-    // console.log(formValues);
   };
 
   return (

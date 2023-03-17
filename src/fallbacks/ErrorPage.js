@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function () {
-  return <>loading...</>;
+  return <div>todo: write Error page</div>;
 }

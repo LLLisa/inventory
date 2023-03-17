@@ -4,7 +4,7 @@ const promptType = {
   bigText: 'bigText',
 };
 
-module.exports = [
+export default [
   {
     title:
       'Just for today, my thoughts will be on my recovery, living and enjoying life without the use of drugs.',
@@ -116,6 +116,6 @@ module.exports = [
   {
     title:
       'Dear God, show me what I have done right and wrong today. Show me how I can better live and serve your will tomorrow.',
-    prompts: [{ text: 'Notes:', type: promptType.bigText }],
+    prompts: [{ text: 'Notes', type: promptType.bigText }],
   },
 ];

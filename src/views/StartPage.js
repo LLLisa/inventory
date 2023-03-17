@@ -16,6 +16,9 @@ export default function () {
       <Link to='/0'>
         <h3>Begin Inventory</h3>
       </Link>
+      <Link to='/bt'>
+        <h3>Read Step 10 in the Basic Text</h3>
+      </Link>
     </div>
   );
 }

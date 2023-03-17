@@ -1,8 +1,11 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { outputForm, generateHTML } from '../utils';
 import html2pdf from 'html2pdf.js';
 
 export default function () {
+  const pageNum = useParams().pageNum * 1;
+
   const handleDownload = () => {
     const currentDate = new Date().toLocaleDateString().replaceAll('/', '-');
     const filenameString = `DailyInventory_${currentDate}`;
@@ -24,7 +27,7 @@ export default function () {
 
   return (
     <footer>
-      <button onClick={handleDownload}>Download PDF</button>
+      {!Number.isNaN(pageNum) && <button onClick={handleDownload}>Download PDF</button>}
       <p>
         This is NA Fellowship-approved literature. Copyright © 1983 by Narcotics Anonymous World
         Services, Inc. All rights reserved.

@@ -15,7 +15,6 @@ export default function () {
 
   const inputFields = (prompt) => {
     const isChecked = (text) => {
-      console.log(text, formValues[prompt]);
       return formValues[text] === 'yes';
     };
 

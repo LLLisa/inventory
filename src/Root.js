@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { Header, StartPage, Form, Footer } from './views';
+import { Header, StartPage, Form, Footer, TenthStepBT } from './views';
 import { ErrorPage } from './fallbacks';
 
 export default () => (
@@ -12,7 +12,15 @@ export default () => (
           <>
             <Header />
             <StartPage />
-            <Footer />
+          </>
+        ),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: '/bt',
+        element: (
+          <>
+            <TenthStepBT />
           </>
         ),
         errorElement: <ErrorPage />,

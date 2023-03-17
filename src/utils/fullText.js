@@ -116,6 +116,6 @@ export default [
   {
     title:
       'Dear God, show me what I have done right and wrong today. Show me how I can better live and serve your will tomorrow.',
-    prompts: [{ text: 'Notes:', type: promptType.bigText }],
+    prompts: [{ text: 'Notes', type: promptType.bigText }],
   },
 ];

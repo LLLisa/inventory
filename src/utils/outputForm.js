@@ -45,5 +45,5 @@ export default {
   'Was I happy today?': '',
   'Have I been peaceful today?': '',
   'Did I consciously remember that I have a choice today?': '',
-  notes: '',
+  Notes: '',
 };

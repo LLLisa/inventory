@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import outputForm from '../outputForm';
-import fullText from '../fullText';
+import { outputForm, fullText } from '../utils';
 
 export default function () {
   const { pageNum } = useParams();
@@ -20,9 +19,9 @@ export default function () {
         return (
           <div>
             yes
-            <input name={prompt.text} value='yes' type='radio'></input>
+            <input name={prompt.text} value='yes' type='radio' onChange={handleOnChange}></input>
             no
-            <input name={prompt.text} value='no' type='radio'></input>
+            <input name={prompt.text} value='no' type='radio' onChange={handleOnChange}></input>
           </div>
         );
       case promptTypes.smallText:
@@ -50,7 +49,8 @@ export default function () {
   const handleOnChange = (ev) => {
     if (ev.target.type !== 'radio') ev.preventDefault();
     setFormValues({ ...formValues, [ev.target.name]: ev.target.value });
-    console.log(formValues);
+    outputForm[ev.target.name] = ev.target.value;
+    // console.log(formValues);
   };
 
   return (

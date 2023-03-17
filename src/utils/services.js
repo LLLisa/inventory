@@ -18,4 +18,8 @@ export async function fullTextLoader({ params }) {
   }
 }
 
-export function generateHTML(form) {}
+export function generateHTML(form) {
+  const textElement = document.createElement('div', `<html>hello world</html>`);
+  // return textElement;
+  return `<html>hello world</html>`;
+}

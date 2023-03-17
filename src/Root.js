@@ -2,7 +2,6 @@ import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Header, StartPage, Form, Footer } from './views';
 import { ErrorPage } from './fallbacks';
-import { pageLoader, fullTextLoader } from './services';
 
 export default () => (
   <RouterProvider
@@ -17,7 +16,6 @@ export default () => (
           </>
         ),
         errorElement: <ErrorPage />,
-        // loader: fullTextLoader,
       },
       {
         path: '/:pageNum',
@@ -29,7 +27,6 @@ export default () => (
           </>
         ),
         errorElement: <ErrorPage />,
-        // loader: pageLoader,
       },
     ])}
   />

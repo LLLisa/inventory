@@ -1,10 +1,12 @@
 import React from 'react';
-import OutputForm from '../outputForm';
-import fullText from '../fullText';
+import { generateHTML, outputForm, fullText } from '../utils';
 
 export default function () {
   const handleDownload = () => {
-    console.dir(fullText);
+    // const footer = document.querySelector('footer');
+    // footer.innerHTML = generateHTML();
+
+    console.dir(outputForm);
   };
 
   return (

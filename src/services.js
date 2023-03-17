@@ -8,3 +8,12 @@ export async function pageLoader({ params }) {
     throw error;
   }
 }
+
+export async function fullTextLoader({ params }) {
+  try {
+    const { data } = await axios.get('fullText');
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}

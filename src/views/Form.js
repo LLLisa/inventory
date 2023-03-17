@@ -1,9 +1,11 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLoaderData, useParams } from 'react-router-dom';
 import OutputForm from '../OutputForm';
+import fullText from '../fullText';
 
 export default function () {
-  const data = useLoaderData();
+  const { pageNum } = useParams();
+  const page = fullText[pageNum];
 
   const promptTypes = {
     yesNo: 'yesNo',
@@ -23,9 +25,9 @@ export default function () {
           </div>
         );
       case promptTypes.smallText:
-        return <input name={prompt.text}></input>;
+        return <input name={prompt.text} value={page[prompt.text]}></input>;
       case promptTypes.bigText:
-        return <input className='bigText' name={prompt.text}></input>;
+        return <input className='bigText' name={prompt.text} value={page[prompt.text]}></input>;
       default:
         break;
     }
@@ -33,14 +35,16 @@ export default function () {
 
   const handleOnChange = (ev) => {
     if (ev.target.type !== 'radio') ev.preventDefault();
-    OutputForm[ev.target.name] = ev.target.value;
+    console.log(ev.target.name);
+    page[ev.target.name] = ev.target.value;
+    console.log(page);
   };
 
   return (
     <form onChange={handleOnChange}>
-      <h2>{data.title}</h2>
+      <h2>{page.title}</h2>
       <ul>
-        {data.prompts.map((prompt, index) => {
+        {page.prompts.map((prompt, index) => {
           return (
             <li key={index}>
               <div>

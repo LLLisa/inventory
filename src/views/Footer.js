@@ -1,10 +1,10 @@
 import React from 'react';
-import { generateHTML, outputForm, fullText } from '../utils';
+import { outputForm, fullText, generateHTML } from '../utils';
 
 export default function () {
   const handleDownload = () => {
-    // const footer = document.querySelector('footer');
-    // footer.innerHTML = generateHTML();
+    const testing = document.querySelector('#testing');
+    testing.innerHTML = generateHTML(outputForm);
 
     console.dir(outputForm);
   };
@@ -16,6 +16,7 @@ export default function () {
         This is NA Fellowship-approved literature. Copyright © 1983 by Narcotics Anonymous World
         Services, Inc. All rights reserved.
       </p>
+      <div id='testing'></div>
     </footer>
   );
 }

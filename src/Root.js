@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { Header, StartPage, Form, Footer, TenthStepBT } from './views';
+import { Header, StartPage, Form, Footer, TenthStepBT } from './components';
 import { ErrorPage } from './fallbacks';
 
 export default () => (

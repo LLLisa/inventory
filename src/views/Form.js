@@ -84,17 +84,17 @@ export default function () {
   return (
     <div className='content-container'>
       <form>
-        <h2>{page.title}</h2>
+        <h3>{page.title}</h3>
         <ul>
           {page.prompts.map((prompt, index) => {
             return (
               <li key={index}>
                 <div className='prompt-container'>
-                  {prompt.text}
-                  {inputFields(prompt)}
+                  <div>{prompt.text}</div>
+                  <div>{inputFields(prompt)}</div>
                 </div>
                 {prompt.sub && (
-                  <div className='sub-container'>
+                  <div className='prompt-container'>
                     <div> &#9900; {prompt.sub.text}</div>
                     <div>{inputFields(prompt.sub)}</div>
                   </div>

@@ -13,13 +13,36 @@ header {
   color: white;
   position: sticky;
   max-width: 100%;
+  min-width: 100%;
   max-height: 5%;
   top: 0;
   padding: 0 1rem 0 1rem;
 }
 
-header > a {
+header a {
   color: white;
+}
+
+header h1 {
+  text-align: center;
+}
+
+#home-button {
+  min-width: 40%;
+}
+
+nav button {
+  width: 5rem;
+  margin-top: 3rem;
+  background-color: blue;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.center-text {
+  text-align: center;
 }
 
 a {
@@ -34,16 +57,20 @@ a {
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .content-container {
   padding: 0 0.5rem 0 0.5rem;
   margin-bottom: 2rem;
+  max-width: 90%;
+  font-size: large;
 }
 
 .big-text {

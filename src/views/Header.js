@@ -3,25 +3,28 @@ import { Link, useParams } from 'react-router-dom';
 
 export default function () {
   const pageNum = useParams().pageNum * 1;
-  const path = window.location.pathname;
 
   return (
     <header>
-      <h1>Living the Program</h1>
-      <Link className={path === '/' ? 'hidden' : ''} to='/'>
-        <h3>Back to start page</h3>
-      </Link>
-
-      {!Number.isNaN(pageNum) && (
-        <nav>
-          <Link to={`/${pageNum - 1}`}>
-            <button disabled={!Number.isInteger(pageNum) || pageNum <= 0}>back</button>
+      <nav>
+        {!Number.isNaN(pageNum) ? (
+          <Link to={pageNum ? `/${pageNum - 1}` : '/'}>
+            <button>&lt; prev</button>
           </Link>
+        ) : (
+          <div></div>
+        )}
+        <Link to='/' id='home-button'>
+          <h1>Living the Program</h1>
+        </Link>
+        {!Number.isNaN(pageNum) ? (
           <Link to={Number.isInteger(pageNum) ? `/${pageNum + 1}` : '/0'}>
-            <button disabled={pageNum >= 5}>forward</button>
+            <button disabled={pageNum >= 5}>next &gt;</button>
           </Link>
-        </nav>
-      )}
+        ) : (
+          <div></div>
+        )}
+      </nav>
     </header>
   );
 }

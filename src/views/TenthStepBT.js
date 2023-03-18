@@ -4,12 +4,12 @@ export default function () {
   return (
     <>
       <div className='content-container'>
-        <h2>Step Ten</h2>
-        <div>
+        <h2 className='center-text'>Step Ten</h2>
+        <p>
           <em>
             “We continued to take personal inventory and when we were wrong promptly admitted it.”
           </em>
-        </div>
+        </p>
         <p>
           Step Ten frees us from the wreckage of our present. If we do not stay aware of our
           defects, they can drive us into a corner that we can’t get out of clean.

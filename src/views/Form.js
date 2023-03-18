@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { outputForm, fullText } from '../utils';
+import { outputForm, fullText, generateHTML } from '../utils';
+import html2pdf from 'html2pdf.js';
 
 export default function () {
   const { pageNum } = useParams();
   const page = fullText[pageNum];
+
   const [formValues, setFormValues] = useState(outputForm);
 
   const promptTypes = {
@@ -46,7 +48,7 @@ export default function () {
       case promptTypes.bigText:
         return (
           <input
-            className='bigText'
+            className='big-text'
             name={prompt.text}
             value={formValues[prompt.text]}
             onChange={handleOnChange}
@@ -63,27 +65,50 @@ export default function () {
     outputForm[ev.target.name] = ev.target.value;
   };
 
+  const handleDownload = () => {
+    const currentDate = new Date().toLocaleDateString().replaceAll('/', '-');
+    const filenameString = `DailyInventory_${currentDate}`;
+
+    const options = {
+      margin: 0.5,
+      filename: filenameString,
+      image: { type: 'jpeg', quality: 0.98 },
+      enableLinks: true,
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+    };
+
+    html2pdf(generateHTML(outputForm), options);
+  };
+
   return (
-    <form>
-      <h2>{page.title}</h2>
-      <ul>
-        {page.prompts.map((prompt, index) => {
-          return (
-            <li key={index}>
-              <div>
-                {prompt.text}
-                {inputFields(prompt)}
-              </div>
-              {prompt.sub && (
-                <>
-                  <div> &#9900; {prompt.sub.text}</div>
-                  <div>{inputFields(prompt.sub)}</div>
-                </>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    </form>
+    <div className='content-container'>
+      <form>
+        <h2>{page.title}</h2>
+        <ul>
+          {page.prompts.map((prompt, index) => {
+            return (
+              <li key={index}>
+                <div className='prompt-container'>
+                  {prompt.text}
+                  {inputFields(prompt)}
+                </div>
+                {prompt.sub && (
+                  <div className='sub-container'>
+                    <div> &#9900; {prompt.sub.text}</div>
+                    <div>{inputFields(prompt.sub)}</div>
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </form>
+      {pageNum === '5' && (
+        <button id='download-button' onClick={handleDownload}>
+          Download PDF
+        </button>
+      )}
+    </div>
   );
 }

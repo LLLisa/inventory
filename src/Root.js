@@ -9,30 +9,33 @@ export default () => (
       {
         path: '/',
         element: (
-          <>
+          <div className='main-container'>
             <Header />
             <StartPage />
-          </>
+            <Footer />
+          </div>
         ),
         errorElement: <ErrorPage />,
       },
       {
         path: '/bt',
         element: (
-          <>
+          <div className='main-container'>
+            <Header />
             <TenthStepBT />
-          </>
+            <Footer />
+          </div>
         ),
         errorElement: <ErrorPage />,
       },
       {
         path: '/:pageNum',
         element: (
-          <>
+          <div className='main-container'>
             <Header />
             <Form />
             <Footer />
-          </>
+          </div>
         ),
         errorElement: <ErrorPage />,
       },

@@ -3,11 +3,13 @@ import { Link, useParams } from 'react-router-dom';
 
 export default function () {
   const pageNum = useParams().pageNum * 1;
+  const path = window.location.pathname;
 
   return (
     <header>
-      <Link to={'/'}>
-        <h1>Living the Program</h1>
+      <h1>Living the Program</h1>
+      <Link className={path === '/' ? 'hidden' : ''} to='/'>
+        <h3>Back to start page</h3>
       </Link>
 
       {!Number.isNaN(pageNum) && (

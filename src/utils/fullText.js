@@ -86,7 +86,7 @@ export default [
 
       {
         text: 'What spiritual principles have I been able to practice in my life today?',
-        type: promptType.smallText,
+        type: promptType.bigText,
       },
       {
         text: 'Was the most important thing in my life today staying clean?',

@@ -85,13 +85,21 @@ export default function () {
     <div className='content-container'>
       <form>
         <h3>{page.title}</h3>
-        <ul>
+        <ul className='prompt-list-container'>
           {page.prompts.map((prompt, index) => {
             return (
               <li key={index}>
                 <div className='prompt-container'>
-                  <div>{prompt.text}</div>
-                  <div>{inputFields(prompt)}</div>
+                  {prompt.type === promptTypes.yesNo ? (
+                    <div className='yesNo'>
+                      {prompt.text}&ensp;{inputFields(prompt)}
+                    </div>
+                  ) : (
+                    <>
+                      <div>{prompt.text}</div>
+                      <div>{inputFields(prompt)}</div>
+                    </>
+                  )}
                 </div>
                 {prompt.sub && (
                   <div className='prompt-container'>

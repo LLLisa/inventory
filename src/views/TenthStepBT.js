@@ -75,7 +75,7 @@ export default function () {
           existence. This step allows us to be ourselves.
         </p>
         <p id='bt-page-reference'>
-          <em>(from the Basic Text of Narcotics Anonymous, Sixth Edition pg 42-44)</em>
+          <em>Basic Text of Narcotics Anonymous, Sixth Edition pg 42-44</em>
         </p>
       </div>
     </>

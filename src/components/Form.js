@@ -16,9 +16,8 @@ export default function () {
   };
 
   const inputFields = (prompt) => {
-    const isChecked = (text) => {
-      return formValues[text] === 'yes';
-    };
+    const isYesChecked = (text) => formValues[text] === 'yes';
+    const isNoChecked = (text) => formValues[text] === 'no';
 
     switch (prompt.type) {
       case promptTypes.yesNo:
@@ -27,7 +26,7 @@ export default function () {
             yes
             <input
               name={prompt.text}
-              checked={isChecked(prompt.text)}
+              checked={isYesChecked(prompt.text)}
               value='yes'
               type='radio'
               onChange={handleOnChange}
@@ -35,7 +34,7 @@ export default function () {
             no
             <input
               name={prompt.text}
-              checked={!isChecked(prompt.text)}
+              checked={isNoChecked(prompt.text)}
               value='no'
               type='radio'
               onChange={handleOnChange}
@@ -46,7 +45,6 @@ export default function () {
         return (
           <input
             name={prompt.text}
-            checked={isChecked(prompt.text)}
             value={formValues[prompt.text]}
             onChange={handleOnChange}
           ></input>
@@ -65,9 +63,9 @@ export default function () {
     }
   };
 
-  const handleOnChange = (ev) => {
+  const handleOnChange = async (ev) => {
     if (ev.target.type !== 'radio') ev.preventDefault();
-    setFormValues({ ...formValues, [ev.target.name]: ev.target.value });
+    await setFormValues({ ...formValues, [ev.target.name]: ev.target.value });
     outputForm[ev.target.name] = ev.target.value;
   };
 
@@ -92,9 +90,9 @@ export default function () {
       <form>
         <h3>{page.title}</h3>
         <ul className='prompt-list-container'>
-          {page.prompts.map((prompt, index) => {
+          {page.prompts.map((prompt) => {
             return (
-              <li key={index}>
+              <li key={prompt.text}>
                 <div className='prompt-container'>
                   {prompt.type === promptTypes.yesNo ? (
                     <div className='yesNo'>

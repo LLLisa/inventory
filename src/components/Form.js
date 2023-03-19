@@ -33,7 +33,13 @@ export default function () {
               onChange={handleOnChange}
             ></input>
             no
-            <input name={prompt.text} value='no' type='radio' onChange={handleOnChange}></input>
+            <input
+              name={prompt.text}
+              checked={isChecked(prompt.text)}
+              value='no'
+              type='radio'
+              onChange={handleOnChange}
+            ></input>
           </div>
         );
       case promptTypes.smallText:

@@ -35,7 +35,7 @@ export default function () {
             no
             <input
               name={prompt.text}
-              checked={isChecked(prompt.text)}
+              checked={!isChecked(prompt.text)}
               value='no'
               type='radio'
               onChange={handleOnChange}

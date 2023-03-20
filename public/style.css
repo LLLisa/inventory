@@ -139,13 +139,17 @@ footer > p {
     overflow-x: hidden;
   }
 
-  .content-container {
-    max-width: 100%;
-    overflow-x: hidden;
+  header {
+    height: 9%;
   }
 
   nav {
     max-height: 100%;
+  }
+
+  .content-container {
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .nav-button {

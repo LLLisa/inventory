@@ -57,8 +57,8 @@ export default function () {
             value={formValues[prompt.text]}
             wordwrap='wrap'
             onChange={handleOnChange}
-            cols={50}
-            rows={8}
+            cols={28}
+            rows={5}
           ></textarea>
         );
       default:

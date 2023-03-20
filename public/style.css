@@ -1,7 +1,11 @@
 body {
-  background-color: #eeeeee;
+  background-color: #dddddd;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+  height: 100dvh;
+  width: 100dvw;
+
+  overflow-x: hidden;
 }
 
 .main-container {
@@ -88,9 +92,14 @@ nav {
 }
 
 .text-input {
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   font-size: 1rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
 }
 
 /* static text page --------------------------------------------*/
@@ -126,8 +135,8 @@ footer > p {
 /* media queries------------------------------------------------ */
 
 @media (max-width: 445px) {
-  .main-container {
-    /* background-color: green; */
+  .content-container {
+    max-width: 100%;
   }
 
   nav {

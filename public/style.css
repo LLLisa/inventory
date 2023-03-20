@@ -25,6 +25,8 @@ header h1 {
 }
 
 nav {
+  max-width: 775px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;

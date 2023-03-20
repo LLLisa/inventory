@@ -1,9 +1,18 @@
 body {
   background-color: #eeeeee;
   font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden;
   margin: 0;
 }
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100dvh;
+  width: 100dvw;
+}
+
+/* header------------------------------------------ */
 
 header {
   background-color: blue;
@@ -40,6 +49,8 @@ nav {
   cursor: pointer;
 }
 
+/* util---------------------------------------------- */
+
 .right-text {
   text-align: right;
 }
@@ -57,38 +68,40 @@ nav {
   opacity: 0;
 }
 
-.main-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100dvh;
-  width: 100dvw;
-}
+/* form content area----------------------------------------- */
 
 .content-container {
   padding: 0 0.5rem 0 0.5rem;
   margin-bottom: 2rem;
   max-width: 650px;
   font-size: large;
+  padding-bottom: 2rem;
 }
+
+/* prompts/inputs--------------------------------------------------- */
 
 .prompt-container {
   margin: 0.75rem;
 }
 
-.yesNo {
-  /* display: flex; */
+.radio {
+  border: 2px dashed green;
 }
 
-.big-text {
-  min-width: 20rem;
-  min-height: 3rem;
+.text-input {
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
 }
+
+/* static text page --------------------------------------------*/
 
 #bt-page-reference {
   text-align: center;
   font-size: small;
 }
+
+/* footer---------------------------------------------------- */
 
 footer {
   background-color: blue;
@@ -110,6 +123,8 @@ footer > p {
   text-align: center;
   margin: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
+
+/* media queries------------------------------------------------ */
 
 @media (max-width: 445px) {
   .main-container {

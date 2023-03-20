@@ -15,13 +15,14 @@ export default function () {
     bigText: 'bigText',
   };
 
-  const inputFields = (prompt) => {
+  const inputFields = (prompt, index) => {
     switch (prompt.type) {
       case promptTypes.yesNo:
         return (
           <div>
             yes
             <input
+              className='radio'
               name={prompt.text}
               checked={formValues[prompt.text] === 'yes'}
               value='yes'
@@ -30,6 +31,7 @@ export default function () {
             ></input>
             no
             <input
+              className='radio'
               name={prompt.text}
               checked={formValues[prompt.text] === 'no'}
               value='no'
@@ -41,6 +43,7 @@ export default function () {
       case promptTypes.smallText:
         return (
           <input
+            className='text-input'
             name={prompt.text}
             value={formValues[prompt.text]}
             onChange={handleOnChange}
@@ -48,12 +51,15 @@ export default function () {
         );
       case promptTypes.bigText:
         return (
-          <input
-            className='big-text'
+          <textarea
+            className='big-text text-input'
             name={prompt.text}
             value={formValues[prompt.text]}
+            wordwrap='wrap'
             onChange={handleOnChange}
-          ></input>
+            cols={50}
+            rows={8}
+          ></textarea>
         );
       default:
         break;
@@ -87,18 +93,18 @@ export default function () {
       <form>
         <h3>{page.title}</h3>
         <ul className='prompt-list-container'>
-          {page.prompts.map((prompt) => {
+          {page.prompts.map((prompt, index) => {
             return (
               <li key={prompt.text}>
                 <div className='prompt-container'>
                   {prompt.type === promptTypes.yesNo ? (
                     <div className='yesNo'>
-                      {prompt.text}&ensp;{inputFields(prompt)}
+                      {prompt.text}&ensp;{inputFields(prompt, index)}
                     </div>
                   ) : (
                     <>
                       <div>{prompt.text}</div>
-                      <div>{inputFields(prompt)}</div>
+                      <div>{inputFields(prompt, index)}</div>
                     </>
                   )}
                 </div>

@@ -93,7 +93,7 @@ nav {
 
 .text-input {
   border-radius: 5px;
-  border: none;
+  border: 1px solid #dddddd;
   font-size: 1rem;
 }
 
@@ -134,7 +134,7 @@ footer > p {
 
 /* media queries------------------------------------------------ */
 
-@media (max-width: 445px) {
+@media screen and (max-width: 445px) {
   .content-container {
     max-width: 100%;
   }
@@ -145,13 +145,14 @@ footer > p {
 
   .nav-button {
     min-width: 5rem;
+    border: 3px dotted red;
   }
 
-  #prev {
+  .prev {
     margin-left: 0;
   }
 
-  #next {
+  .next {
     margin-right: 0;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 export default function () {
@@ -8,15 +8,11 @@ export default function () {
     <header>
       <nav>
         {!Number.isNaN(pageNum) && pageNum > 0 ? (
-          <Link
-            className='nav-button unstyled-link'
-            id='prev'
-            to={pageNum ? `/${pageNum - 1}` : '/'}
-          >
+          <Link className='nav-button unstyled-link prev' to={pageNum ? `/${pageNum - 1}` : '/'}>
             <div>&lt; prev</div>
           </Link>
         ) : (
-          <div className='nav-button'></div>
+          <div className='nav-button prev'></div>
         )}
         <div>
           <Link className='unstyled-link' id='home-button' to='/'>
@@ -25,14 +21,13 @@ export default function () {
         </div>
         {!Number.isNaN(pageNum) && pageNum < 5 ? (
           <Link
-            className='nav-button unstyled-link'
-            id='next'
+            className='nav-button unstyled-link next'
             to={Number.isInteger(pageNum) ? `/${pageNum + 1}` : '/0'}
           >
             <div className='right-text'>next &gt;</div>
           </Link>
         ) : (
-          <div className='nav-button'></div>
+          <div className='nav-button next'></div>
         )}
       </nav>
     </header>

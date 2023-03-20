@@ -3,6 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 
 export default function () {
   const pageNum = useParams().pageNum * 1;
+  // window = function () {
+  //   console.log('hashChange');
+  // };
 
   return (
     <header>

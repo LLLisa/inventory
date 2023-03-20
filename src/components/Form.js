@@ -16,9 +16,6 @@ export default function () {
   };
 
   const inputFields = (prompt) => {
-    const isYesChecked = (text) => formValues[text] === 'yes';
-    const isNoChecked = (text) => formValues[text] === 'no';
-
     switch (prompt.type) {
       case promptTypes.yesNo:
         return (
@@ -26,7 +23,7 @@ export default function () {
             yes
             <input
               name={prompt.text}
-              checked={isYesChecked(prompt.text)}
+              checked={formValues[prompt.text] === 'yes'}
               value='yes'
               type='radio'
               onChange={handleOnChange}
@@ -34,7 +31,7 @@ export default function () {
             no
             <input
               name={prompt.text}
-              checked={isNoChecked(prompt.text)}
+              checked={formValues[prompt.text] === 'no'}
               value='no'
               type='radio'
               onChange={handleOnChange}

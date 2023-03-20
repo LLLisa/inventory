@@ -7,7 +7,7 @@ export default function () {
       <p>
         This app was developed as a way to making a daily inventory more convenient and accessible
         for members of Narcotics Anonymous. The content for the inventory was taken from the NA
-        informational Pamphlet #9, "Living the Program". A physical copy of this IP can be purchased
+        informational Pamphlet #9, "Living the Program". A physical copy of this IP is available
         from <a href='https://www.na.org'>the NA website</a> or at an NA meeting near you.
       </p>
       <p>

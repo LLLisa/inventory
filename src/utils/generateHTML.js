@@ -117,6 +117,12 @@ export default function (formData) {
       </li>
       </ul>
     </section>
+    <br/>
+    <br/>
+    <p>Taken from the NA
+    informational Pamphlet #9, "Living the Program". A physical copy of this IP is available
+    from <a href='https://www.na.org'>the NA website</a> or at an NA meeting near you.</p>
+    <p>Copyright © 1983 by Narcotics Anonymous World Services, Inc. All rights reserved.<?p>
 </body>
 </html>`;
 }

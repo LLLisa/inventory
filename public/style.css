@@ -60,7 +60,6 @@ nav {
 }
 
 .unstyled-link {
-  color: black;
   text-decoration: none;
 }
 
@@ -129,5 +128,21 @@ footer > p {
 @media (max-width: 445px) {
   .main-container {
     /* background-color: green; */
+  }
+
+  nav {
+    max-height: 100%;
+  }
+
+  .nav-button {
+    min-width: 5rem;
+  }
+
+  #prev {
+    margin-left: 0;
+  }
+
+  #next {
+    margin-right: 0;
   }
 }

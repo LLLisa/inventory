@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { outputForm, fullText } from '../utils';
-import { DownloadButton, InputField } from './index';
+import { DownloadButton } from './index';
 
 export default () => {
   const { pageNum } = useParams();
@@ -63,6 +63,7 @@ export default () => {
           ></textarea>
         );
       default:
+        console.log('inputFields received: ', prompt);
         break;
     }
   };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-export default function () {
+export default () => {
   const pageNum = useParams().pageNum * 1;
 
   return (
@@ -32,4 +32,4 @@ export default function () {
       </nav>
     </header>
   );
-}
+};

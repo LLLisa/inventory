@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function () {
+export default () => {
   return (
     <>
       <div className='content-container'>
@@ -80,4 +80,4 @@ export default function () {
       </div>
     </>
   );
-}
+};

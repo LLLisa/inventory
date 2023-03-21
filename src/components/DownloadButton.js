@@ -2,7 +2,7 @@ import React from 'react';
 import { outputForm, generateHTML } from '../utils';
 import html2pdf from 'html2pdf.js';
 
-export default function () {
+export default () => {
   const handleDownload = () => {
     const currentDate = new Date().toLocaleDateString().replaceAll('/', '-');
     const filenameString = `DailyInventory_${currentDate}`;
@@ -24,4 +24,4 @@ export default function () {
       Download PDF
     </button>
   );
-}
+};

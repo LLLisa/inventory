@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function () {
+export default () => {
   return (
     <div className='content-container'>
       <p>
@@ -27,4 +27,4 @@ export default function () {
       </Link>
     </div>
   );
-}
+};

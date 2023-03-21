@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-export default function () {
+export default () => {
   const pageNum = useParams().pageNum;
 
   return (
@@ -17,4 +17,4 @@ export default function () {
       )}
     </footer>
   );
-}
+};

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { outputForm, fullText } from '../utils';
-import { DownloadButton } from './index';
+import { DownloadButton, InputField } from './index';
 
-export default function () {
+export default () => {
   const { pageNum } = useParams();
   const page = fullText[pageNum];
 
@@ -15,7 +15,7 @@ export default function () {
     bigText: 'bigText',
   };
 
-  const inputFields = (prompt, index) => {
+  const inputFields = (prompt) => {
     switch (prompt.type) {
       case promptTypes.yesNo:
         return (
@@ -78,18 +78,18 @@ export default function () {
       <form>
         <h3>{page.title}</h3>
         <ul className='prompt-list-container'>
-          {page.prompts.map((prompt, index) => {
+          {page.prompts.map((prompt) => {
             return (
               <li key={prompt.text}>
                 <div className='prompt-container'>
                   {prompt.type === promptTypes.yesNo ? (
                     <div className='yesNo'>
-                      {prompt.text}&ensp;{inputFields(prompt, index)}
+                      {prompt.text}&ensp;{inputFields(prompt)}
                     </div>
                   ) : (
                     <>
                       <div>{prompt.text}</div>
-                      <div>{inputFields(prompt, index)}</div>
+                      <div>{inputFields(prompt)}</div>
                     </>
                   )}
                 </div>
@@ -107,4 +107,4 @@ export default function () {
       {pageNum === '5' && <DownloadButton />}
     </div>
   );
-}
+};

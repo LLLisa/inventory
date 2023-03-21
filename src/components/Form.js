@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { outputForm, fullText, generateHTML } from '../utils';
-import html2pdf from 'html2pdf.js';
+import { outputForm, fullText } from '../utils';
+import { DownloadButton } from './index';
 
 export default function () {
   const { pageNum } = useParams();
@@ -47,6 +47,7 @@ export default function () {
             name={prompt.text}
             value={formValues[prompt.text]}
             onChange={handleOnChange}
+            maxLength={3000}
           ></input>
         );
       case promptTypes.bigText:
@@ -57,8 +58,8 @@ export default function () {
             value={formValues[prompt.text]}
             wordwrap='wrap'
             onChange={handleOnChange}
-            cols={28}
             rows={5}
+            maxLength={3000}
           ></textarea>
         );
       default:
@@ -70,22 +71,6 @@ export default function () {
     if (ev.target.type !== 'radio') ev.preventDefault();
     await setFormValues({ ...formValues, [ev.target.name]: ev.target.value });
     outputForm[ev.target.name] = ev.target.value;
-  };
-
-  const handleDownload = () => {
-    const currentDate = new Date().toLocaleDateString().replaceAll('/', '-');
-    const filenameString = `DailyInventory_${currentDate}`;
-
-    const options = {
-      margin: 0.5,
-      filename: filenameString,
-      image: { type: 'jpeg', quality: 0.98 },
-      enableLinks: true,
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-    };
-
-    html2pdf(generateHTML(outputForm), options);
   };
 
   return (
@@ -119,11 +104,7 @@ export default function () {
           })}
         </ul>
       </form>
-      {pageNum === '5' && (
-        <button id='download-button' onClick={handleDownload}>
-          Download PDF
-        </button>
-      )}
+      {pageNum === '5' && <DownloadButton />}
     </div>
   );
 }

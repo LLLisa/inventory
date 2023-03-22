@@ -8,12 +8,19 @@ export default () => {
         <Link className='unstyled-link' to='/0'>
           <h2>Begin Inventory</h2>
         </Link>
-        <p className='margin-bot'>Begin a tenth step inventory using the NA IP no. 9</p>
+        <p>Begin a tenth step inventory using the NA IP no. 9</p>
         <Link className='unstyled-link' to='/bt'>
-          <h2>Read Step 10</h2>
+          <h2>From our Basic Text</h2>
         </Link>
         <p className='wrap'>
           Read Step 10 from the Basic Text of Narcotics Anonymous, Sixth Edition
+        </p>
+        <Link className='unstyled-link' to='/gg'>
+          <h2>From It Works: How & Why</h2>
+        </Link>
+        <p className='wrap'>
+          Read Step 10 from It Works: How & Why - The 12 Steps and 12 Traditions of Narcotics
+          Anonymous
         </p>
       </div>
       <div id='meta-links'>

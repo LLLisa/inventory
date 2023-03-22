@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { Root, Menu, Form, TenthStepBT, AboutPage, ErrorPage } from './components';
+import { Root, Menu, Form, TenthStepBT, TenthStepGG, AboutPage, ErrorPage } from './components';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/bt',
         element: <TenthStepBT />,
+      },
+      {
+        path: '/gg',
+        element: <TenthStepGG />,
       },
       {
         path: '/about',

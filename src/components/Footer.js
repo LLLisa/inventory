@@ -15,6 +15,9 @@ export default () => {
           Services, Inc. All rights reserved.
         </p>
       )}
+      {window.location.pathname === '/gg' && (
+        <p>Copyright © 1993 by Narcotics Anonymous World Services, Inc. All rights reserved.</p>
+      )}
     </footer>
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export default () => {
   return (
-    <div className='content-container'>
+    <section className='content-container'>
+      <h2 className='center-text'>About this application</h2>
       <p>
         This app was developed as a way to making a daily inventory more convenient and accessible
         for members of Narcotics Anonymous. The content for the inventory was taken from the NA
@@ -19,12 +19,11 @@ export default () => {
         All of the textual content in this application, aside from this page, is copyright Narcotics
         Anonymous World Services, inc.
       </p>
-      <Link className='unstyled-link' to='/0'>
-        <h3>Begin Inventory</h3>
-      </Link>
-      <Link className='unstyled-link' to='/bt'>
-        <h3>Read Step 10 in the Basic Text</h3>
-      </Link>
-    </div>
+      <p>
+        Aside from the text content, the code itself is free and open-source, available &nbsp;
+        <a href='https://github.com/LLLisa/inventory'>here</a>&nbsp; under an MIT license. Please
+        use it and all of the conetnt here in any way that will be helpful.
+      </p>
+    </section>
   );
 };

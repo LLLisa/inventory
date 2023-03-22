@@ -1,8 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import Root from './Root';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { StartPage, Form, TenthStepBT } from './components';
+import { Root, Menu, Form, TenthStepBT, AboutPage } from './components';
 import { ErrorPage } from './fallbacks';
 
 const router = createBrowserRouter([
@@ -13,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <StartPage />,
+        element: <Menu />,
       },
       {
         path: '/:pageNum',
@@ -22,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/bt',
         element: <TenthStepBT />,
+      },
+      {
+        path: '/about',
+        element: <AboutPage />,
       },
     ],
   },

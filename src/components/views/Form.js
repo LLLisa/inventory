@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { outputForm, fullText } from '../utils';
-import { DownloadButton } from './index';
+import { outputForm, fullText } from '../../utils';
+import { DownloadButton } from '../index';
 
 export default () => {
   const { pageNum } = useParams();

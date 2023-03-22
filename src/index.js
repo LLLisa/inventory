@@ -1,8 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { Root, Menu, Form, TenthStepBT, AboutPage } from './components';
-import { ErrorPage } from './fallbacks';
+import { Root, Menu, Form, TenthStepBT, AboutPage, ErrorPage } from './components';
 
 const router = createBrowserRouter([
   {

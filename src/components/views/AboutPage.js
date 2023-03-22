@@ -23,7 +23,7 @@ export default () => {
       <p>
         Aside from the text content, the code itself is free and open-source, available &nbsp;
         <a href='https://github.com/LLLisa/inventory'>here</a>&nbsp; under an MIT license. Please
-        use it and all of the conetnt here in any way that will be helpful.
+        use it and all of the conent here in any way that will be helpful.
       </p>
     </section>
   );

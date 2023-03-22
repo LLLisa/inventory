@@ -17,26 +17,26 @@ export default () => {
         <p>
           One of the first things we learn in Narcotics Anonymous is that if we use, we lose. By the
           same token, we won’t experience as much pain if we can avoid the things that cause us
-          pain. Con- tinuing to take a personal inventory means that we form a habit of looking at
+          pain. Continuing to take a personal inventory means that we form a habit of looking at
           ourselves, our actions, attitudes and relationships on a regular basis.
         </p>
         <p>
           We are creatures of habit and are vulnerable to our old ways of thinking and reacting. At
           times it seems easier to continue in the old rut of self-destruction than to attempt a new
-          and seem- ingly dangerous route. We don’t have to be trapped by our old patterns. Today,
-          we have a choice.
+          and seemingly dangerous route. We don’t have to be trapped by our old patterns. Today, we
+          have a choice.
         </p>
         <p>
           The Tenth Step can help us correct our living problems and prevent their recurrence. We
           examine our actions during the day. Some of us write about our feelings, explaining how we
-          felt and what part we might have played in any problems which oc- curred. Did we cause
+          felt and what part we might have played in any problems which occurred. Did we cause
           someone harm? Do we need to admit that we were wrong? If we find difficulties, we make an
           effort to take care of them. When these things are left undone, they have a way of
           festering.
         </p>
         <p>
           This step can be a defense against the old insanity. We can ask ourselves if we are being
-          drawn into old patterns of anger, re- sentment or fear. Do we feel trapped? Are we setting
+          drawn into old patterns of anger, resentment or fear. Do we feel trapped? Are we setting
           ourselves up for trouble? Are we too hungry, angry, lonely or tired? Are we taking
           ourselves too seriously? Are we judging our insides by the outside appearances of others?
           Do we suffer from some physical problem? The answers to these questions can help us deal
@@ -49,7 +49,7 @@ export default () => {
           The Tenth Step can be a pressure relief valve. We work this step while the day’s ups and
           downs are still fresh in our minds. We list what we have done and try not to rationalize
           our actions. This may be done in writing at the end of the day. The first thing we do is
-          stop! Then we take the time to allow ourselves the privi- lege of thinking. We examine our
+          stop! Then we take the time to allow ourselves the privilege of thinking. We examine our
           actions, reactions, and motives. We often find that we’ve been doing better than we’ve
           been feeling. This allows us to examine our actions and admit fault, before things get any
           worse. We need to avoid rationalizing. We promptly admit our faults, not explain them.

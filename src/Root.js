@@ -1,28 +1,13 @@
 import React from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { Main, StartPage, Form, TenthStepBT } from './components';
-import { ErrorPage } from './fallbacks';
+import { Outlet } from 'react-router-dom';
+import { Header, Footer } from './components';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Main />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: '/',
-        element: <StartPage />,
-      },
-      {
-        path: '/:pageNum',
-        element: <Form />,
-      },
-      {
-        path: '/bt',
-        element: <TenthStepBT />,
-      },
-    ],
-  },
-]);
-
-export default () => <RouterProvider router={router} />;
+export default () => {
+  return (
+    <div className='main-container'>
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+  );
+};

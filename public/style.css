@@ -93,11 +93,14 @@ nav {
   height: 87dvh;
 }
 
-.meta-links {
+#meta-links {
   max-width: 650px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.meta-link {
+  text-align: center;
 }
 
 /* form content area------------------------------------ */
@@ -194,9 +197,17 @@ footer > p {
     margin-right: 0;
   }
 
-  .meta-links {
+  #meta-links {
+    /* border: 2px dashed red; */
     flex-direction: column;
     align-items: left;
     padding: 1rem;
+  }
+
+  .meta-link {
+    /* border: 2px dotted blue; */
+    max-height: 2em;
+    display: flex;
+    align-items: center;
   }
 }

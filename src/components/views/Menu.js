@@ -16,14 +16,18 @@ export default () => {
           Read Step 10 from the Basic Text of Narcotics Anonymous, Sixth Edition
         </p>
       </div>
-      <div className='meta-links'>
-        <a href='https://www.na.org/meetingsearch/' target='_blank' className='unstyled-link'>
+      <div id='meta-links'>
+        <a
+          href='https://www.na.org/meetingsearch/'
+          target='_blank'
+          className='unstyled-link meta-link'
+        >
           <h4>Find a meeting</h4>
         </a>
-        <a href='https://www.na.org' target='_blank' className='unstyled-link'>
+        <a href='https://www.na.org' target='_blank' className='unstyled-link meta-link'>
           <h4>Visit the NA website</h4>
         </a>
-        <Link className='unstyled-link' to='/about'>
+        <Link className='unstyled-link meta-link' to='/about'>
           <h4>About this Application</h4>
         </Link>
       </div>

@@ -5,7 +5,7 @@ import html2pdf from 'html2pdf.js';
 export default () => {
   const handleDownload = () => {
     const currentDate = new Date().toLocaleDateString().replaceAll('/', '-');
-    const filenameString = `DailyInventory_${currentDate}`;
+    const filenameString = `Daily Inventory for ${currentDate}`;
 
     const options = {
       margin: 0.5,
@@ -16,7 +16,7 @@ export default () => {
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
 
-    html2pdf(generateHTML(outputForm), options);
+    if (confirm(`Download ${filenameString} ?`)) html2pdf(generateHTML(outputForm), options);
   };
 
   return (

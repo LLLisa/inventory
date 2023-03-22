@@ -8,7 +8,8 @@ export default () => {
         This app was developed as a way to making a daily inventory more convenient and accessible
         for members of Narcotics Anonymous. The content for the inventory was taken from the NA
         informational Pamphlet #9, "Living the Program". A physical copy of this IP is available
-        from <a href='https://www.na.org'>the NA website</a> or at an NA meeting near you.
+        from <a href='https://www.na.org'>the NA website</a> or{' '}
+        <a href='https://www.na.org/meetingsearch/'> find an NA meeting near you.</a>
       </p>
       <p>
         In the spirit of anonymity, none of your responses or personal information are saved

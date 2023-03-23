@@ -62,7 +62,7 @@ export default () => {
             <label htmlFor={prompt.text}>{prompt.text}</label>
             <br />
             <textarea
-              className='big-text text-input'
+              className='text-input'
               name={prompt.text}
               value={formValues[prompt.text]}
               wordwrap='wrap'
@@ -87,32 +87,53 @@ export default () => {
   return (
     <div className='content-container'>
       <form>
-        <h3>{page.title}</h3>
+        <h3 className='center-text'>{page.title}</h3>
         <ul className='prompt-list-container'>
           {page.prompts.map((prompt) => {
             return (
-              <li key={prompt.text}>
-                <div className='prompt-container'>
-                  {prompt.type === promptTypes.yesNo ? (
-                    <div className='yesNo'>
-                      {prompt.text}&ensp;{inputFields(prompt)}
-                    </div>
-                  ) : (
-                    <>
-                      <div>{inputFields(prompt)}</div>
-                    </>
-                  )}
-                </div>
-                {prompt.sub && (
+              prompt.text !== 'Notes' && (
+                <li key={prompt.text}>
                   <div className='prompt-container'>
-                    <div>- {inputFields(prompt.sub)}</div>
+                    {prompt.type === promptTypes.yesNo ? (
+                      <div className='yesNo'>
+                        {prompt.text}&ensp;{inputFields(prompt)}
+                      </div>
+                    ) : (
+                      <>
+                        <div>{inputFields(prompt)}</div>
+                      </>
+                    )}
                   </div>
-                )}
-              </li>
+                  {prompt.sub && (
+                    <div className='prompt-container'>
+                      <div>- {inputFields(prompt.sub)}</div>
+                    </div>
+                  )}
+                </li>
+              )
             );
           })}
         </ul>
       </form>
+      {pageNum === '5' && (
+        <div id='notes-container'>
+          <div id='notes-label'>
+            <label htmlFor='notes'>Notes:</label>
+          </div>
+
+          <br />
+          <textarea
+            className='text-input'
+            id='notes'
+            name='Notes'
+            value={formValues['Notes']}
+            wordwrap='wrap'
+            onChange={handleOnChange}
+            rows={19}
+            maxLength={3000}
+          ></textarea>
+        </div>
+      )}
       <div className='hidden'>{NavBar()}</div>
       {pageNum === '5' && <DownloadButton />}
     </div>

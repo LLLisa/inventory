@@ -122,6 +122,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20%;
+  height: 3rem;
 }
 
 #download-button {
@@ -130,9 +132,7 @@ nav {
   font-size: 1rem;
   font-weight: bold;
   border-radius: 10px;
-  position: absolute;
-  bottom: 8%;
-  height: 8%;
+  height: 100%;
   width: 45%;
   max-width: 400px;
   border: none;
@@ -148,7 +148,7 @@ nav {
 }
 
 .text-input {
-  border-radius: 5px;
+  border-radius: 6px;
   border: 1px solid #dddddd;
   font-size: 1rem;
   width: 80%;

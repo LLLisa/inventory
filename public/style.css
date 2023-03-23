@@ -74,6 +74,12 @@ nav {
   opacity: 0;
 }
 
+.teeny * {
+  height: 1px;
+  width: 1px;
+  font-size: 0;
+}
+
 .margin-bot {
   margin-bottom: 5rem;
 }

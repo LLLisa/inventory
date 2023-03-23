@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { outputForm, fullText } from '../../utils';
 import { DownloadButton } from '../index';
-import { NavBar } from '../Header';
+import Header from '../Header';
 
 export default () => {
   const { pageNum } = useParams();
@@ -134,7 +134,9 @@ export default () => {
           ></textarea>
         </div>
       )}
-      <div className='hidden'>{NavBar()}</div>
+      <div className='teeny hidden' name='lower nav bar'>
+        {<Header />}
+      </div>
       {pageNum === '5' && <DownloadButton />}
     </div>
   );

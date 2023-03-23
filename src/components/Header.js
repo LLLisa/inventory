@@ -19,9 +19,9 @@ export default () => {
           <div className='nav-button prev'></div>
         )}
         <div>
-          <Link className='unstyled-link' id='home-button' to='/'>
+          <Link className='unstyled-link' id='home-button' to='/' name='home-button'>
             <h1>
-              <label htmlFor='back-button'>Living the Program</label>
+              <label htmlFor='home-button'>Living the Program</label>
             </h1>
           </Link>
         </div>
@@ -29,9 +29,10 @@ export default () => {
           <Link
             className='nav-button unstyled-link next'
             to={Number.isInteger(pageNum) ? `/${pageNum + 1}` : '/0'}
+            name='next-button'
           >
             <div className='right-text'>
-              <label htmlFor='back-button'>next &gt;</label>
+              <label htmlFor='next-button'>next &gt;</label>
             </div>
           </Link>
         ) : (

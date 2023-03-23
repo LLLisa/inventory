@@ -73,7 +73,7 @@ export default () => {
           </>
         );
       default:
-        console.log('inputFields received: ', prompt);
+        console.log('ERROR inputFields received: ', prompt);
         break;
     }
   };

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { outputForm, fullText } from '../../utils';
 import { DownloadButton } from '../index';
+import { NavBar } from '../Header';
 
 export default () => {
   const { pageNum } = useParams();
@@ -112,6 +113,7 @@ export default () => {
           })}
         </ul>
       </form>
+      <div className='hidden'>{NavBar()}</div>
       {pageNum === '5' && <DownloadButton />}
     </div>
   );

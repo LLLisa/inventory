@@ -18,6 +18,10 @@ body::-webkit-scrollbar {
   align-items: center;
 }
 
+div:focus {
+  background-color: green;
+}
+
 /* header------------------------------------------ */
 
 header {

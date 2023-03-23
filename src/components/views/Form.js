@@ -16,7 +16,7 @@ export default () => {
     bigText: 'bigText',
   };
 
-  const inputFields = (prompt) => {
+  const inputFields = (prompt, index) => {
     switch (prompt.type) {
       case promptTypes.yesNo:
         return (
@@ -29,6 +29,7 @@ export default () => {
               value='yes'
               type='radio'
               onChange={handleOnChange}
+              autoFocus={index === 0}
             ></input>
             &nbsp;
             <label htmlFor={prompt.text}>no</label>
@@ -53,6 +54,7 @@ export default () => {
               value={formValues[prompt.text]}
               onChange={handleOnChange}
               maxLength={3000}
+              autoFocus={index === 0}
             ></input>
           </>
         );
@@ -69,6 +71,7 @@ export default () => {
               onChange={handleOnChange}
               rows={5}
               maxLength={3000}
+              autoFocus={index === 0}
             ></textarea>
           </>
         );
@@ -89,24 +92,24 @@ export default () => {
       <form>
         <h3 className='center-text'>{page.title}</h3>
         <ul className='prompt-list-container'>
-          {page.prompts.map((prompt) => {
+          {page.prompts.map((prompt, index) => {
             return (
               prompt.text !== 'Notes' && (
                 <li key={prompt.text}>
                   <div className='prompt-container'>
                     {prompt.type === promptTypes.yesNo ? (
                       <div className='yesNo'>
-                        {prompt.text}&ensp;{inputFields(prompt)}
+                        {prompt.text}&ensp;{inputFields(prompt, index)}
                       </div>
                     ) : (
                       <>
-                        <div>{inputFields(prompt)}</div>
+                        <div>{inputFields(prompt, index)}</div>
                       </>
                     )}
                   </div>
                   {prompt.sub && (
                     <div className='prompt-container'>
-                      <div>- {inputFields(prompt.sub)}</div>
+                      <div>- {inputFields(prompt.sub, index)}</div>
                     </div>
                   )}
                 </li>
@@ -131,6 +134,7 @@ export default () => {
             onChange={handleOnChange}
             rows={19}
             maxLength={3000}
+            autoFocus
           ></textarea>
         </div>
       )}

@@ -100,14 +100,17 @@ nav {
 
 #meta-links {
   align-self: center;
-  width: 90%;
+  width: 95%;
   max-width: 650px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+
 .meta-link {
   text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 /* form content area------------------------------------ */

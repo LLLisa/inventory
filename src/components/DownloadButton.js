@@ -20,8 +20,10 @@ export default () => {
   };
 
   return (
-    <button id='download-button' onClick={handleDownload}>
-      Download PDF
-    </button>
+    <div id='download-button-container'>
+      <button name='download-button' id='download-button' onClick={handleDownload}>
+        <label htmlFor='download-button'>Download PDF</label>
+      </button>
+    </div>
   );
 };

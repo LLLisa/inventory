@@ -113,6 +113,27 @@ nav {
   padding-bottom: 1rem;
 }
 
+#download-button-container {
+  /* border: 2px dashed red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#download-button {
+  background-color: blue;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 8%;
+  height: 8%;
+  width: 45%;
+  max-width: 400px;
+  border: none;
+}
+
 /* prompts/inputs---------------------------------------- */
 
 .prompt-container {
@@ -137,9 +158,19 @@ textarea:focus {
 
 /* static text page --------------------------------------------*/
 
-#bt-page-reference {
+#page-reference {
   text-align: center;
   font-size: small;
+}
+
+/* error page --------------------------------------------------*/
+
+#error-page {
+  padding: 20%;
+}
+
+#error-page > h1 {
+  text-align: center;
 }
 
 /* footer---------------------------------------------------- */

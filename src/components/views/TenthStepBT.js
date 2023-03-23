@@ -74,7 +74,7 @@ export default () => {
           free, in the here and now, from ourselves and the past. We no longer justify our
           existence. This step allows us to be ourselves.
         </p>
-        <p id='bt-page-reference'>
+        <p id='page-reference'>
           <em>Basic Text of Narcotics Anonymous, Sixth Edition pg 42-44</em>
         </p>
       </div>

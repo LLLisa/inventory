@@ -178,7 +178,7 @@ export default () => {
           ways to maintain and improve our contact with it. Seeking direction and meaning for our
           lives, we go on to the Eleventh Step.
         </p>
-        <p id='bt-page-reference'>
+        <p id='page-reference'>
           <em>It Works: How and Why pg 69-75</em>
         </p>
       </div>

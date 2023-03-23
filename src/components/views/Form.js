@@ -20,7 +20,7 @@ export default () => {
       case promptTypes.yesNo:
         return (
           <div>
-            yes
+            <label htmlFor={prompt.text}>yes</label>
             <input
               className='radio'
               name={prompt.text}
@@ -29,7 +29,8 @@ export default () => {
               type='radio'
               onChange={handleOnChange}
             ></input>
-            no
+            &nbsp;
+            <label htmlFor={prompt.text}>no</label>
             <input
               className='radio'
               name={prompt.text}
@@ -42,25 +43,33 @@ export default () => {
         );
       case promptTypes.smallText:
         return (
-          <input
-            className='text-input'
-            name={prompt.text}
-            value={formValues[prompt.text]}
-            onChange={handleOnChange}
-            maxLength={3000}
-          ></input>
+          <>
+            <label htmlFor={prompt.text}>{prompt.text}</label>
+            <br />
+            <input
+              className='text-input'
+              name={prompt.text}
+              value={formValues[prompt.text]}
+              onChange={handleOnChange}
+              maxLength={3000}
+            ></input>
+          </>
         );
       case promptTypes.bigText:
         return (
-          <textarea
-            className='big-text text-input'
-            name={prompt.text}
-            value={formValues[prompt.text]}
-            wordwrap='wrap'
-            onChange={handleOnChange}
-            rows={5}
-            maxLength={3000}
-          ></textarea>
+          <>
+            <label htmlFor={prompt.text}>{prompt.text}</label>
+            <br />
+            <textarea
+              className='big-text text-input'
+              name={prompt.text}
+              value={formValues[prompt.text]}
+              wordwrap='wrap'
+              onChange={handleOnChange}
+              rows={5}
+              maxLength={3000}
+            ></textarea>
+          </>
         );
       default:
         console.log('inputFields received: ', prompt);
@@ -89,15 +98,13 @@ export default () => {
                     </div>
                   ) : (
                     <>
-                      <div>{prompt.text}</div>
                       <div>{inputFields(prompt)}</div>
                     </>
                   )}
                 </div>
                 {prompt.sub && (
                   <div className='prompt-container'>
-                    <div> &#9900; {prompt.sub.text}</div>
-                    <div>{inputFields(prompt.sub)}</div>
+                    <div>- {inputFields(prompt.sub)}</div>
                   </div>
                 )}
               </li>

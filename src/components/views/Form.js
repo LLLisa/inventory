@@ -135,6 +135,10 @@ export default () => {
             rows={19}
             maxLength={3000}
             autoFocus
+            onFocus={(ev) => {
+              ev.preventDefault();
+              ev.target.focus({ preventScroll: true });
+            }}
           ></textarea>
         </div>
       )}

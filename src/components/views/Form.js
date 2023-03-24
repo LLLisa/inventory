@@ -123,8 +123,6 @@ export default () => {
           <div id='notes-label'>
             <label htmlFor='notes'>Notes:</label>
           </div>
-
-          <br />
           <textarea
             className='text-input'
             id='notes'
@@ -132,13 +130,9 @@ export default () => {
             value={formValues['Notes']}
             wordwrap='wrap'
             onChange={handleOnChange}
-            rows={19}
+            rows={15}
             maxLength={3000}
             autoFocus
-            onFocus={(ev) => {
-              ev.preventDefault();
-              ev.target.focus({ preventScroll: true });
-            }}
           ></textarea>
         </div>
       )}

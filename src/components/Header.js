@@ -8,11 +8,7 @@ export default () => {
     <header>
       <nav>
         {!Number.isNaN(pageNum) && pageNum > 0 ? (
-          <Link
-            className='nav-button unstyled-link prev'
-            to={pageNum ? `/${pageNum - 1}` : '/'}
-            name='back-button'
-          >
+          <Link className='nav-button unstyled-link prev' to={`/${pageNum - 1}`} name='back-button'>
             <label htmlFor='back-button'>&lt; prev</label>
           </Link>
         ) : (
@@ -26,11 +22,7 @@ export default () => {
           </Link>
         </div>
         {!Number.isNaN(pageNum) && pageNum < 5 ? (
-          <Link
-            className='nav-button unstyled-link next'
-            to={Number.isInteger(pageNum) ? `/${pageNum + 1}` : '/0'}
-            name='next-button'
-          >
+          <Link className='nav-button unstyled-link next' to={`/${pageNum + 1}`} name='next-button'>
             <div className='right-text'>
               <label htmlFor='next-button'>next &gt;</label>
             </div>

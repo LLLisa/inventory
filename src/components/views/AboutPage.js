@@ -25,6 +25,13 @@ export default () => {
         <a href='https://github.com/LLLisa/inventory'>here</a>&nbsp; under an MIT license. Please
         use it and all of the content here in any way that will be helpful.
       </p>
+      <p>
+        This application was created by an individual without express permission from NA World
+        Services. Nothing here, except what is marked as copyrighted maeterial, is officially
+        endorsed by Narcotics Anonymous or NA World Services.
+      </p>
+      <br />
+      <p className='center-text'> Keep Coming Back</p>
     </section>
   );
 };

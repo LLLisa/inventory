@@ -53,7 +53,6 @@ nav {
   border: none;
   color: white;
   font-size: 1.5rem;
-  cursor: pointer;
 }
 
 /* util---------------------------------------------- */
@@ -149,7 +148,8 @@ nav {
   margin: 0.75rem;
 }
 
-.radio {
+.radio-label {
+  padding-right: 0.5rem;
 }
 
 .text-input {
@@ -229,10 +229,6 @@ footer > p {
     overflow-x: hidden;
   }
 
-  header {
-    /* height: 9%; */
-  }
-
   nav {
     max-height: 100%;
   }
@@ -255,14 +251,12 @@ footer > p {
   }
 
   #meta-links {
-    /* border: 2px dashed red; */
     flex-direction: column;
     align-items: left;
     padding: 1rem;
   }
 
   .meta-link {
-    /* border: 2px dotted blue; */
     max-height: 2em;
     display: flex;
     align-items: center;

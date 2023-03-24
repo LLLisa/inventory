@@ -21,26 +21,32 @@ export default () => {
       case promptTypes.yesNo:
         return (
           <div>
-            <label htmlFor={prompt.text}>yes</label>
-            <input
-              className='radio'
-              name={prompt.text}
-              checked={formValues[prompt.text] === 'yes'}
-              value='yes'
-              type='radio'
-              onChange={handleOnChange}
-              autoFocus={index === 0}
-            ></input>
+            <label htmlFor={prompt.text + 'yes'} className='radio-label yes'>
+              yes
+              <input
+                className='radio'
+                name={prompt.text}
+                id={prompt.text + 'yes'}
+                checked={formValues[prompt.text] === 'yes'}
+                value='yes'
+                type='radio'
+                onChange={handleOnChange}
+                autoFocus={index === 0}
+              ></input>
+            </label>
             &nbsp;
-            <label htmlFor={prompt.text}>no</label>
-            <input
-              className='radio'
-              name={prompt.text}
-              checked={formValues[prompt.text] === 'no'}
-              value='no'
-              type='radio'
-              onChange={handleOnChange}
-            ></input>
+            <label htmlFor={prompt.text + 'no'} className='radio-label no'>
+              no
+              <input
+                className='radio'
+                name={prompt.text}
+                id={prompt.text + 'no'}
+                checked={formValues[prompt.text] === 'no'}
+                value='no'
+                type='radio'
+                onChange={handleOnChange}
+              ></input>
+            </label>
           </div>
         );
       case promptTypes.smallText:
@@ -130,7 +136,7 @@ export default () => {
             value={formValues['Notes']}
             wordwrap='wrap'
             onChange={handleOnChange}
-            rows={15}
+            rows={16}
             maxLength={3000}
             autoFocus
           ></textarea>

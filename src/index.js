@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { Root, Menu, Form, TenthStepBT, TenthStepGG, AboutPage, ErrorPage } from './components';
+import { Root, MenuPage, Form, TenthStepBT, TenthStepGG, AboutPage, ErrorPage } from './components';
 
 const router = createBrowserRouter([
   {
@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Menu />,
+        element: <MenuPage />,
         errorElement: <ErrorPage />,
       },
       {

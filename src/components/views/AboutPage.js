@@ -27,8 +27,8 @@ export default () => {
       </p>
       <p>
         This application was created by an individual without express permission from NA World
-        Services. Nothing here, except what is marked as copyrighted maeterial, is officially
-        endorsed by Narcotics Anonymous or NA World Services.
+        Services. Nothing in this app, except what is explicitly marked as copyrighted material, is
+        officially endorsed by Narcotics Anonymous or NA World Services.
       </p>
       <br />
       <p className='center-text'> Keep Coming Back</p>

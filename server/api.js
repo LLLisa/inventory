@@ -6,6 +6,14 @@ const fullText = require('./fullText');
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
+app.use((req, res, next) => {
+  if (req.protocol === 'http') {
+    return res.redirect(301, `https://${req.headers.host}${req.url}`);
+  }
+
+  next();
+});
+
 app.get('/fullText', (req, res, next) => {
   try {
     res.json(fullText);

@@ -93,6 +93,8 @@ export default () => {
     outputForm[ev.target.name] = ev.target.value;
   };
 
+  window.scrollTo(0, 0);
+
   return (
     <div className='content-container'>
       <form>
@@ -138,7 +140,7 @@ export default () => {
             onChange={handleOnChange}
             rows={16}
             maxLength={3000}
-            autoFocus
+            autoFocus={window.visualViewport.width > 445}
           ></textarea>
         </div>
       )}

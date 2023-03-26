@@ -1,36 +1,19 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const fullText = require('./fullText');
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 app.use((req, res, next) => {
-  if (req.protocol === 'http') {
+  if (req.protocol === 'http' && !req.headers.host.includes('localhost')) {
     return res.redirect(301, `https://${req.headers.host}${req.url}`);
   }
-
   next();
 });
 
-app.get('/fullText', (req, res, next) => {
-  try {
-    res.json(fullText);
-  } catch (error) {
-    next(error);
-  }
-});
-
-app.get('/page/:pageNum', (req, res, next) => {
-  try {
-    res.json(fullText[req.params.pageNum]);
-  } catch (error) {
-    next(error);
-  }
-});
-
-app.use('/', (req, res, next) => {
+app.get('/', (req, res, next) => {
+  console.log(req.headers.host);
   try {
     res.sendFile(path.join(__dirname, '../public/index.html'));
   } catch (error) {

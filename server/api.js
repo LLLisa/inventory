@@ -2,9 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-app.use('/public', express.static(path.join(__dirname, '../public')));
-app.use('/dist', express.static(path.join(__dirname, '../dist')));
-
 app.use((req, res, next) => {
   // console.log(req.secure);
   if (!req.secure && !req.headers.host.includes('localhost')) {
@@ -12,6 +9,9 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use('/public', express.static(path.join(__dirname, '../public')));
+app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 app.get('/', (req, res, next) => {
   try {

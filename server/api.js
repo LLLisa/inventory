@@ -4,6 +4,9 @@ const path = require('path');
 
 app.use('*', (req, res, next) => {
   console.log(req);
+  if (req.protocol === 'http' && !req.headers.host.includes('localhost')) {
+    res.redirect(301, `https://${req.headers.host}${req.url}`);
+  }
   next();
 });
 
@@ -12,9 +15,6 @@ app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 app.get('/', (req, res, next) => {
   try {
-    if (!req.secure && !req.headers.host.includes('localhost')) {
-      res.redirect(301, `https://${req.headers.host}${req.url}`);
-    }
     res.sendFile(path.join(__dirname, '../public/index.html'));
   } catch (error) {
     next(error);

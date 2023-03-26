@@ -6,8 +6,8 @@ app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 app.use((req, res, next) => {
-  console.log(req.protocol);
-  if (req.protocol !== 'https' && !req.headers.host.includes('localhost')) {
+  // console.log(req.secure);
+  if (!req.secure && !req.headers.host.includes('localhost')) {
     return res.redirect(301, `https://${req.headers.host}${req.url}`);
   }
   next();

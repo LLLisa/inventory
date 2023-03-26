@@ -6,14 +6,14 @@ app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 app.use((req, res, next) => {
-  if (req.protocol === 'http' && !req.headers.host.includes('localhost')) {
+  console.log(req.protocol);
+  if (req.protocol !== 'https' && !req.headers.host.includes('localhost')) {
     return res.redirect(301, `https://${req.headers.host}${req.url}`);
   }
   next();
 });
 
 app.get('/', (req, res, next) => {
-  console.log(req.headers.host);
   try {
     res.sendFile(path.join(__dirname, '../public/index.html'));
   } catch (error) {

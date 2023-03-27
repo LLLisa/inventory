@@ -10,4 +10,4 @@ All of the textual content in this application, aside from this page, is copyrig
 
 Aside from the text content, the code itself is free and open-source, available here under an MIT license. Please use it and all of the content here in any way that will be helpful.
 
-hosted at https://nadailyinventory.com/about
+hosted at https://nadailyinventory.com

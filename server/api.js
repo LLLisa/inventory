@@ -9,8 +9,9 @@ app.use('*', (req, res, next) => {
     !req.headers.referer[0].includes('https')
   ) {
     return res.redirect(301, `https://${req.headers.host}${req.url}`);
+  } else {
+    next();
   }
-  next();
 });
 
 app.use('/public', express.static(path.join(__dirname, '../public')));

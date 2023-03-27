@@ -3,9 +3,12 @@ const app = express();
 const path = require('path');
 
 app.use('*', (req, res, next) => {
-  console.log(req);
-  if (req.protocol === 'http' && !req.headers.host.includes('localhost')) {
-    res.redirect(301, `https://${req.headers.host}${req.url}`);
+  if (
+    !req.headers.host.includes('localhost') &&
+    req.headers.referer &&
+    !req.headers.referer[0].includes('https')
+  ) {
+    return res.redirect(301, `https://${req.headers.host}${req.url}`);
   }
   next();
 });

@@ -3,15 +3,11 @@ const app = express();
 const path = require('path');
 
 app.use('/', (req, res, next) => {
-  if (
-    !req.headers.host.includes('localhost') &&
-    req.headers.referer &&
-    !req.headers.referer[0].includes('https')
-  ) {
-    return res.redirect(301, `https://${req.headers.host}${req.url}`);
-  } else {
-    next();
+  console.log(req.hostname);
+  if (req.hostname === 'localhost' || req.secure) {
+    return next();
   }
+  res.redirect(301, `https://${req.headers.host}${req.url}`);
 });
 
 app.use('/public', express.static(path.join(__dirname, '../public')));

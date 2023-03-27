@@ -3,7 +3,8 @@ import { outputForm, generateHTML } from '../utils';
 import html2pdf from 'html2pdf.js';
 
 export default () => {
-  const handleDownload = () => {
+  const handleDownload = (ev) => {
+    ev.preventDefault();
     const currentDate = new Date().toLocaleDateString().replaceAll('/', '-');
     const filenameString = `Daily Inventory for ${currentDate}`;
 
@@ -21,7 +22,7 @@ export default () => {
 
   return (
     <div id='download-button-container'>
-      <button name='download-button' id='download-button' onClick={handleDownload}>
+      <button name='download-button' id='download-button' onClick={(ev) => handleDownload(ev)}>
         <label htmlFor='download-button'>Download PDF</label>
       </button>
     </div>

@@ -82,6 +82,21 @@ nav {
 .margin-bot {
   margin-bottom: 5rem;
 }
+
+@keyframes flash {
+  from {
+    background-color: white;
+  }
+  to {
+    background-color: blue;
+  }
+}
+
+.flash {
+  animation-name: flash;
+  animation-duration: 0.75s;
+}
+
 /* Main Menu --------------------------------------------*/
 .menu-button-group {
   padding-top: 1rem;

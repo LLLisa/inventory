@@ -5,6 +5,14 @@ import html2pdf from 'html2pdf.js';
 export default () => {
   const handleDownload = (ev) => {
     ev.preventDefault();
+
+    //I love css hacks
+    const cssTarget = ev.target.tagName === 'BUTTON' ? ev.target : ev.target.parentNode;
+    cssTarget.classList.add('flash');
+    setTimeout(() => {
+      cssTarget.classList.remove('flash');
+    }, 750);
+
     const currentDate = new Date().toLocaleDateString().replaceAll('/', '-');
     const filenameString = `Daily Inventory for ${currentDate}`;
 

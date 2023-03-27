@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-app.use('*', (req, res, next) => {
+app.use('/', (req, res, next) => {
   if (
     !req.headers.host.includes('localhost') &&
     req.headers.referer &&

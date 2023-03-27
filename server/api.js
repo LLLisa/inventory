@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
-app.get('/', (req, res, next) => {
+app.use('/', (req, res, next) => {
   try {
     res.sendFile(path.join(__dirname, '../public/index.html'));
   } catch (error) {

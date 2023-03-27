@@ -16,7 +16,7 @@ export default () => {
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
 
-    if (confirm(`Download ${filenameString} ?`)) html2pdf(generateHTML(outputForm), options);
+    html2pdf(generateHTML(outputForm), options);
   };
 
   return (

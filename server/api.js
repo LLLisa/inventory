@@ -18,13 +18,14 @@ const path = require('path');
 //   res.status(err.status || 500).send(err.message);
 // });
 
-var fs = require('fs');
+// var fs = require('fs');
 var http = require('http');
 var https = require('https');
-var privateKey = fs.readFileSync('secrets/www_nadailyinventory_com.key', 'utf8');
-var certificate = fs.readFileSync('secrets/www_nadailyinventory_com.pem', 'utf8');
-
-var credentials = { key: privateKey, cert: certificate };
+// var privateKey = fs.readFileSync('secrets/www_nadailyinventory_com.key', 'utf8');
+// var certificate = fs.readFileSync('secrets/www_nadailyinventory_com.pem', 'utf8');
+const dotenv = require('dotenv');
+dotenv.config();
+var credentials = { key: process.env.EC_PRIVATE_KEY, cert: process.env.EC_PRIVATE_CERT };
 var express = require('express');
 var app = express();
 

@@ -1,10 +1,10 @@
 export default function (formData) {
-  const promptArray = Object.keys(formData);
-  const responseArray = Object.values(formData);
+    const promptArray = Object.keys(formData);
+    const responseArray = Object.values(formData);
 
-  const currentDate = new Date().toDateString();
+    const currentDate = new Date().toDateString();
 
-  return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -32,15 +32,15 @@ export default function (formData) {
         without the use of drugs.</h3>
       <ul>
         ${promptArray
-          .map((prompt, i) => {
-            if (i < 11) {
-              return `<li>
+            .map((prompt, i) => {
+                if (i < 11) {
+                    return `<li>
             <div class="prompt">${prompt}</div>
             <div class="response">${responseArray[i]}</div>
           </li>`;
-            }
-          })
-          .join('')}
+                }
+            })
+            .join('')}
       </ul>
     </section>
     <section>
@@ -48,15 +48,15 @@ export default function (formData) {
       and wants to help me in my recovery.</h3>
       <ul>
         ${promptArray
-          .map((prompt, i) => {
-            if (i >= 11 && i < 17) {
-              return `<li>
+            .map((prompt, i) => {
+                if (i >= 11 && i < 17) {
+                    return `<li>
             <div class="prompt">${prompt}</div>
             <div class="response">${responseArray[i]}</div>
           </li>`;
-            }
-          })
-          .join('')}
+                }
+            })
+            .join('')}
       </ul>
     </section>
     <section>
@@ -64,30 +64,30 @@ export default function (formData) {
       of my ability.</h3>
       <ul>
         ${promptArray
-          .map((prompt, i) => {
-            if (i >= 17 && i < 27) {
-              return `<li>
+            .map((prompt, i) => {
+                if (i >= 17 && i < 27) {
+                    return `<li>
             <div class="prompt">${prompt}</div>
             <div class="response">${responseArray[i]}</div>
           </li>`;
-            }
-          })
-          .join('')}
+                }
+            })
+            .join('')}
       </ul>
     </section>
     <section>
       <h3><em>Just for today,</em> through NA, I will try to get a better perspective on my life.</h3>
       <ul>
         ${promptArray
-          .map((prompt, i) => {
-            if (i >= 27 && i < 37) {
-              return `<li>
+            .map((prompt, i) => {
+                if (i >= 27 && i < 37) {
+                    return `<li>
             <div class="prompt">${prompt}</div>
             <div class="response">${responseArray[i]}</div>
           </li>`;
-            }
-          })
-          .join('')}
+                }
+            })
+            .join('')}
       </ul>
     </section>
     <section>
@@ -96,15 +96,15 @@ export default function (formData) {
       So long as I follow that way, I have nothing to fear.</h3>
       <ul>
         ${promptArray
-          .map((prompt, i) => {
-            if (i >= 37 && i < 45) {
-              return `<li>
+            .map((prompt, i) => {
+                if (i >= 37 && i < 45) {
+                    return `<li>
             <div class="prompt">${prompt}</div>
             <div class="response">${responseArray[i]}</div>
           </li>`;
-            }
-          })
-          .join('')}
+                }
+            })
+            .join('')}
       </ul>
     </section>
     <section>
@@ -119,9 +119,7 @@ export default function (formData) {
     </section>
     <br/>
     <br/>
-    <p>Taken from the NA
-    informational Pamphlet #9, "Living the Program". A physical copy of this IP is available
-    from <a href='https://www.na.org'>the NA website</a> or <a href='https://www.na.org/meetingsearch/'>find an NA meeting near you.</a></p>
+    <p>Taken from the NA informational Pamphlet #9, "Living the Program". A physical copy of this IP is available from <a href='https://www.na.org'>the NA website</a> or <a href='https://www.na.org/meetingsearch/'>find an NA meeting near you.</a></p>
     <p>Copyright © 1983 by Narcotics Anonymous World Services, Inc. All rights reserved.<?p>
 </body>
 </html>`;

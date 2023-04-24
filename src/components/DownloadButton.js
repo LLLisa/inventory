@@ -25,7 +25,8 @@ export default () => {
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
         };
 
-        const parsedDoc = await html2pdf(generateHTML(outputForm), options);
+        // const parsedDoc = await html2pdf(generateHTML(outputForm), options);
+        const parsedDoc = await html2pdf().set(options).from(generateHTML(outputForm));
         parsedDoc.save();
     };
 

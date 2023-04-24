@@ -19,7 +19,7 @@
         "@babel/core": "^7.17.10",
         "@babel/preset-react": "^7.16.7",
         "babel-loader": "^8.2.5",
-        "html2pdf.js": "^0.9.3",
+        "html2pdf.js": "^0.10.1",
         "nodemon": "^2.0.20",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

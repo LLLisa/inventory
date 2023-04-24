@@ -25,7 +25,11 @@ export default () => {
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
         };
 
-        html2pdf(generateHTML(outputForm), options);
+        // html2pdf(generateHTML(outputForm), options);
+        const parsedDoc = html2pdf().set(options).from(generateHTML(outputForm));
+        setTimeout(() => {
+            parsedDoc.save();
+        }, 250);
     };
 
     return (

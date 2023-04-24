@@ -28,8 +28,8 @@ export default () => {
         // html2pdf(generateHTML(outputForm), options);
         const parsedDoc = html2pdf().set(options).from(generateHTML(outputForm));
         setTimeout(() => {
-            parsedDoc.save();
-        }, 250);
+            parsedDoc.save('foo.pdf');
+        }, 500);
     };
 
     return (

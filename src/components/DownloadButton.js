@@ -3,7 +3,7 @@ import { outputForm, generateHTML } from '../utils';
 import html2pdf from 'html2pdf.js';
 
 export default () => {
-    const handleDownload = (ev) => {
+    const handleDownload = async (ev) => {
         ev.preventDefault();
 
         //I love css hacks
@@ -25,12 +25,8 @@ export default () => {
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
         };
 
-        // html2pdf(generateHTML(outputForm), options);
-        const parsedDoc = html2pdf().set(options).from(generateHTML(outputForm));
-        alert();
-        // setTimeout(() => {
-        parsedDoc.save('foo.pdf');
-        // }, 500);
+        const parsedDoc = await html2pdf(generateHTML(outputForm), options);
+        parsedDoc.save();
     };
 
     return (

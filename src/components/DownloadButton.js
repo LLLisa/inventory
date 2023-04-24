@@ -3,7 +3,7 @@ import { outputForm, generateHTML } from '../utils';
 import html2pdf from 'html2pdf.js';
 
 export default () => {
-    const handleDownload = async (ev) => {
+    const handleDownload = (ev) => {
         ev.preventDefault();
 
         //I love css hacks
@@ -26,7 +26,7 @@ export default () => {
         };
 
         // const parsedDoc = await html2pdf(generateHTML(outputForm), options);
-        const parsedDoc = await html2pdf().set(options).from(generateHTML(outputForm));
+        const parsedDoc = html2pdf().set(options).from(generateHTML(outputForm));
         parsedDoc.save();
     };
 

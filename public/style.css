@@ -59,11 +59,13 @@ nav {
     transition: background-color 300ms;
 }
 
-.nav-button:hover {
+.nav-button.unstyled-link:hover {
     background-color: rgb(66, 126, 255);
+    cursor: pointer;
 }
 
 .button-icon {
+    cursor: pointer;
     padding-top: 0.25rem;
     transform: scale(1.5, 2);
 }

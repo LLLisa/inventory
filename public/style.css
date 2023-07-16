@@ -226,7 +226,6 @@ textarea:focus {
 
 .intro {
     list-style-type: none;
-    text-indent: 1rem;
     padding-left: 0%;
 }
 
@@ -312,7 +311,7 @@ footer > p {
     }
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 445px) {
     .nav-button.unstyled-link:hover,
     .button:hover {
         background-color: rgb(66, 126, 255);

@@ -312,9 +312,7 @@ footer > p {
     }
 }
 
-/* only hover if media allows hovering */
-
-@media (hover: hover) {
+@media screen and (min-width: 500px) {
     .nav-button.unstyled-link:hover,
     .button:hover {
         background-color: rgb(66, 126, 255);

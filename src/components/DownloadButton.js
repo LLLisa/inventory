@@ -22,6 +22,7 @@ export default () => {
             image: { type: 'jpeg', quality: 0.98 },
             enableLinks: true,
             html2canvas: { scale: 2 },
+            pagebreak: { mode: 'avoid-all' },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
         };
 

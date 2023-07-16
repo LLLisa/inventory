@@ -173,6 +173,20 @@ nav {
     max-width: 400px;
     border: none;
     font-size: larger;
+    transition: background-color 300ms;
+}
+
+.button:hover {
+    background-color: rgb(66, 126, 255);
+    cursor: pointer;
+}
+
+#begin-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    height: 3rem;
 }
 
 .begin {

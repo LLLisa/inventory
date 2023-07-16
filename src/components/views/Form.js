@@ -146,7 +146,7 @@ export default () => {
                 {<Header />}
             </div>
             {pageNum === '0' && (
-                <div id='button-container'>
+                <div id='begin-container'>
                     <Link to='/1' name='button' className='begin button unstyled-link' style={{ width: '30%' }}>
                         <label htmlFor='button'>Begin</label>
                     </Link>

@@ -30,9 +30,9 @@ export default () => {
     };
 
     return (
-        <div id='download-button-container'>
-            <button name='download-button' id='download-button' onClick={(ev) => handleDownload(ev)}>
-                <label htmlFor='download-button'>Download PDF</label>
+        <div id='button-container'>
+            <button name='button' className='button' onClick={(ev) => handleDownload(ev)}>
+                <label htmlFor='button'>Download PDF</label>
             </button>
         </div>
     );

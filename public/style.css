@@ -154,7 +154,7 @@ nav {
     padding-bottom: 1rem;
 }
 
-#download-button-container {
+#button-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,7 +162,7 @@ nav {
     height: 3rem;
 }
 
-#download-button {
+.button {
     background-color: blue;
     color: white;
     font-size: 1rem;
@@ -172,6 +172,13 @@ nav {
     width: 45%;
     max-width: 400px;
     border: none;
+    font-size: larger;
+}
+
+.begin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* prompts/inputs---------------------------------------- */

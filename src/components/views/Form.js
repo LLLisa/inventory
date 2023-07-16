@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { outputForm, fullText, promptType } from '../../utils';
 import { DownloadButton } from '../index';
 import Header from '../Header';
@@ -98,7 +98,6 @@ export default () => {
             <form>
                 <h3 className='center-text'>{page.title}</h3>
                 <ul className={`prompt-list-container ${pageNum * 1 === 0 ? ' intro' : ''}`}>
-                    {/* <ul className='prompt-list-container intro'> */}
                     {page.prompts.map((prompt, index) => {
                         return (
                             prompt.text !== 'Notes' && (
@@ -146,6 +145,13 @@ export default () => {
             <div className='teeny hidden' name='lower nav bar'>
                 {<Header />}
             </div>
+            {pageNum === '0' && (
+                <div id='button-container'>
+                    <Link to='/1' name='button' className='begin button unstyled-link' style={{ width: '30%' }}>
+                        <label htmlFor='button'>Begin</label>
+                    </Link>
+                </div>
+            )}
             {pageNum === '6' && <DownloadButton />}
         </div>
     );

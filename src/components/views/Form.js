@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { outputForm, fullText } from '../../utils';
+import { outputForm, fullText, promptType } from '../../utils';
 import { DownloadButton } from '../index';
 import Header from '../Header';
 
@@ -10,15 +10,9 @@ export default () => {
 
     const [formValues, setFormValues] = useState(outputForm);
 
-    const promptTypes = {
-        yesNo: 'yesNo',
-        smallText: 'smallText',
-        bigText: 'bigText',
-    };
-
     const inputFields = (prompt, index) => {
         switch (prompt.type) {
-            case promptTypes.yesNo:
+            case promptType.yesNo:
                 return (
                     <div>
                         <label htmlFor={prompt.text + 'yes'} className='radio-label yes'>
@@ -49,7 +43,7 @@ export default () => {
                         </label>
                     </div>
                 );
-            case promptTypes.smallText:
+            case promptType.smallText:
                 return (
                     <>
                         <label htmlFor={prompt.text}>{prompt.text}</label>
@@ -64,7 +58,7 @@ export default () => {
                         ></input>
                     </>
                 );
-            case promptTypes.bigText:
+            case promptType.bigText:
                 return (
                     <>
                         <label htmlFor={prompt.text}>{prompt.text}</label>
@@ -79,6 +73,12 @@ export default () => {
                             maxLength={3000}
                             autoFocus={index === 0}
                         ></textarea>
+                    </>
+                );
+            case promptType.plainText:
+                return (
+                    <>
+                        <label htmlFor={prompt.text}>{prompt.text}</label>
                     </>
                 );
             default:
@@ -97,13 +97,14 @@ export default () => {
         <div className='content-container'>
             <form>
                 <h3 className='center-text'>{page.title}</h3>
-                <ul className='prompt-list-container'>
+                <ul className={`prompt-list-container ${pageNum * 1 === 0 ? ' intro' : ''}`}>
+                    {/* <ul className='prompt-list-container intro'> */}
                     {page.prompts.map((prompt, index) => {
                         return (
                             prompt.text !== 'Notes' && (
                                 <li key={prompt.text}>
-                                    <div className='prompt-container'>
-                                        {prompt.type === promptTypes.yesNo ? (
+                                    <div className={`prompt-container`}>
+                                        {prompt.type === promptType.yesNo ? (
                                             <div className='yesNo'>
                                                 {prompt.text}&ensp;{inputFields(prompt, index)}
                                             </div>
@@ -115,7 +116,7 @@ export default () => {
                                     </div>
                                     {prompt.sub && (
                                         <div className='prompt-container'>
-                                            <div>- {inputFields(prompt.sub, index)}</div>
+                                            <div> {inputFields(prompt.sub, index)}</div>
                                         </div>
                                     )}
                                 </li>
@@ -124,7 +125,7 @@ export default () => {
                     })}
                 </ul>
             </form>
-            {pageNum === '5' && (
+            {pageNum === '6' && (
                 <div id='notes-container'>
                     <div id='notes-label'>
                         <label htmlFor='notes'>Notes:</label>
@@ -145,7 +146,7 @@ export default () => {
             <div className='teeny hidden' name='lower nav bar'>
                 {<Header />}
             </div>
-            {pageNum === '5' && <DownloadButton />}
+            {pageNum === '6' && <DownloadButton />}
         </div>
     );
 };

@@ -213,6 +213,11 @@ textarea:focus {
     width: 90%;
 }
 
+.intro {
+    list-style-type: none;
+    text-indent: 1rem;
+}
+
 /* static text page --------------------------------------------*/
 
 #page-reference {

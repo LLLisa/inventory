@@ -25,7 +25,7 @@ export default () => {
                         </h1>
                     </Link>
                 </div>
-                {!Number.isNaN(pageNum) && pageNum < 5 ? (
+                {!Number.isNaN(pageNum) && pageNum < 6 ? (
                     <Link className='nav-button unstyled-link next' to={`/${pageNum + 1}`} name='next-button'>
                         <div className='right-text'>
                             <label htmlFor='next-button'>

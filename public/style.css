@@ -172,7 +172,7 @@ nav {
     width: 45%;
     max-width: 400px;
     border: none;
-    font-size: larger;
+    font-size: large;
     transition: background-color 300ms;
 }
 

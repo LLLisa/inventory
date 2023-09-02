@@ -214,10 +214,6 @@ textarea:focus {
     max-width: 80%;
 }
 
-#install-text li {
-    padding-right: 2rem;
-}
-
 /* error page --------------------------------------------------*/
 
 #error-page {
@@ -340,5 +336,11 @@ footer > p {
     .button:hover {
         background-color: var(--basic-text-light-blue);
         cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    #install-text > p {
+        max-width: 90%;
     }
 }

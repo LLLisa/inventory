@@ -1,11 +1,4 @@
-:root {
-    --basic-text-blue: rgb(0, 0, 255);
-    --basic-text-light-blue: rgb(66, 126, 255);
-    --text-white: rgb(255, 255, 255);
-    --bg-white: rgb(255, 255, 255);
-    --bg-off-white: #eeeeee;
-    --border-lt-gray: #dddddd;
-}
+@import url("./theme.css");
 
 body {
     background-color: var(--bg-off-white);

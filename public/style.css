@@ -339,6 +339,12 @@ footer > p {
     }
 }
 
+@media screen and (min-width: 582px) {
+    #install-text > p {
+        max-width: 550px;
+    }
+}
+
 @media screen and (max-width: 390px) {
     #install-text > p {
         max-width: 90%;

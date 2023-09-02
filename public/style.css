@@ -203,6 +203,21 @@ textarea:focus {
     font-size: small;
 }
 
+#install-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#install-text > p {
+    text-align: center;
+    max-width: 80%;
+}
+
+#install-text li {
+    padding-right: 2rem;
+}
+
 /* error page --------------------------------------------------*/
 
 #error-page {

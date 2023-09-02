@@ -1,19 +1,9 @@
-import Root from './Root';
-import Header from './Header';
-import DownloadButton from './DownloadButton';
-import Footer from './Footer';
-import { MenuPage, Form, TenthStepBT, TenthStepGG, AboutPage } from './views';
-import { ErrorPage } from './fallbacks';
+import Root from "./Root";
+import Header from "./Header";
+import DownloadButton from "./DownloadButton";
+import Footer from "./Footer";
+import { ErrorPage } from "./fallbacks";
+import "./views";
 
-export {
-  Root,
-  Header,
-  MenuPage,
-  TenthStepBT,
-  TenthStepGG,
-  AboutPage,
-  Form,
-  DownloadButton,
-  Footer,
-  ErrorPage,
-};
+export { Root, Header, DownloadButton, Footer, ErrorPage };
+export * from "./views";

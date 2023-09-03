@@ -343,3 +343,9 @@ footer > p {
         max-width: 90%;
     }
 }
+
+@media screen and (min-width: 850px) {
+    body {
+        background: linear-gradient(to right, var(--bg-dark-gray) 0%, var(--bg-off-white) 25%, var(--bg-off-white) 75%, var(--bg-dark-gray) 100%);
+    }
+}

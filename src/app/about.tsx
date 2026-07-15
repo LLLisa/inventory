@@ -42,9 +42,10 @@ export default function AboutScreen() {
           </ExternalLink>
         </Text>
         <Text style={styles.p}>
-          In the spirit of anonymity, none of your responses or personal information are saved
-          anywhere on this website or its servers. Anything you choose to keep is stored only on your
-          own device, and you can download a PDF of your responses on the last page.
+          In the spirit of anonymity, none of your responses or personal information are ever sent
+          to a server. On the web, nothing is stored at all; the mobile app can optionally keep
+          entries on your own device. Either way, you can download a PDF of your responses on the
+          last page.
         </Text>
         <Text style={styles.p}>
           All of the textual content in this application, aside from this page, is copyright

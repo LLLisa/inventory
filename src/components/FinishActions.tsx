@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Button from '@/components/Button';
 import { Colors, Spacing } from '@/constants/theme';
 import { exportInventoryPdf } from '@/services/exportPdf';
+import { STORAGE_ENABLED } from '@/services/storage';
 import { useInventory } from '@/store/inventory';
 
 /**
@@ -39,16 +40,24 @@ export default function FinishActions({ onBack }: { onBack: () => void }) {
   return (
     <View style={styles.container}>
       <Button label="Download PDF" onPress={handleDownload} style={styles.button} />
-      <Button
-        label={saved ? 'Saved ✓' : 'Save to my history'}
-        variant="outline"
-        onPress={handleSave}
-        disabled={busy || saved}
-        style={styles.button}
-      />
-      <Text style={styles.note}>
-        Saving keeps this entry on your device only. It is never uploaded anywhere.
-      </Text>
+      {STORAGE_ENABLED ? (
+        <>
+          <Button
+            label={saved ? 'Saved ✓' : 'Save to my history'}
+            variant="outline"
+            onPress={handleSave}
+            disabled={busy || saved}
+            style={styles.button}
+          />
+          <Text style={styles.note}>
+            Saving keeps this entry on your device only. It is never uploaded anywhere.
+          </Text>
+        </>
+      ) : (
+        <Text style={styles.note}>
+          Nothing you enter is saved anywhere. Download a PDF to keep a copy of your responses.
+        </Text>
+      )}
       <Button label="Back" variant="outline" onPress={onBack} style={styles.back} />
     </View>
   );

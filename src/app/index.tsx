@@ -4,6 +4,7 @@ import { MetaLink, PrimaryLink } from '@/components/MenuLink';
 import Screen from '@/components/Screen';
 import Seo, { SITE_NAME, SITE_URL } from '@/components/Seo';
 import { Colors, Spacing } from '@/constants/theme';
+import { STORAGE_ENABLED } from '@/services/storage';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -54,7 +55,9 @@ export default function MenuScreen() {
       <View style={styles.metaRow}>
         <MetaLink title="Find a Meeting" icon="location-outline" url="https://www.na.org/meetingsearch/" />
         <MetaLink title="Visit NA.org" icon="globe-outline" url="https://www.na.org" />
-        <MetaLink title="My History" icon="time-outline" href="/history" />
+        {STORAGE_ENABLED ? (
+          <MetaLink title="My History" icon="time-outline" href="/history" />
+        ) : null}
         <MetaLink title="About" icon="information-circle-outline" href="/about" />
         <MetaLink title="Install on Phone" icon="phone-portrait-outline" href="/install" />
       </View>

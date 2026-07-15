@@ -9,7 +9,7 @@ import {
 } from 'react';
 
 import { createEmptyAnswers, type Answers } from '@/data/fullText';
-import { addEntry, clearDraft, loadDraft, saveDraft } from '@/services/storage';
+import { addEntry, clearDraft, loadDraft, saveDraft, STORAGE_ENABLED } from '@/services/storage';
 
 interface InventoryContextValue {
   answers: Answers;
@@ -34,8 +34,9 @@ export function InventoryProvider({ children }: { children: ReactNode }) {
   const [isDirty, setIsDirty] = useState(false);
   const [hydrated, setHydrated] = useState(false);
 
-  // Restore any saved draft on first mount.
+  // Restore any saved draft on first mount (native only — the web stores nothing).
   useEffect(() => {
+    if (!STORAGE_ENABLED) return;
     let active = true;
     loadDraft().then((draft) => {
       if (active && draft) setAnswers((prev) => ({ ...prev, ...draft }));
@@ -47,9 +48,9 @@ export function InventoryProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // Autosave the draft (debounced) once hydrated, so we never clobber a stored
-  // draft with the empty initial state before it has loaded.
+  // draft with the empty initial state before it has loaded. Native only.
   useEffect(() => {
-    if (!hydrated) return;
+    if (!STORAGE_ENABLED || !hydrated) return;
     const timer = setTimeout(() => saveDraft(answers), 400);
     return () => clearTimeout(timer);
   }, [answers, hydrated]);

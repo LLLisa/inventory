@@ -1,4 +1,4 @@
-import { Link, useFocusEffect } from 'expo-router';
+import { Link, Redirect, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -8,7 +8,7 @@ import Seo from '@/components/Seo';
 import { Colors, Spacing } from '@/constants/theme';
 import { answerKeys } from '@/data/fullText';
 import { exportInventoryPdf } from '@/services/exportPdf';
-import { deleteEntry, loadEntries, type Entry } from '@/services/storage';
+import { deleteEntry, loadEntries, STORAGE_ENABLED, type Entry } from '@/services/storage';
 
 function formatDate(iso: string): string {
   const d = new Date(iso);
@@ -66,6 +66,14 @@ function EntryCard({ entry, onDelete }: { entry: Entry; onDelete: (id: string) =
 }
 
 export default function HistoryScreen() {
+  // The web keeps no history — nothing is stored there. Send users home.
+  if (!STORAGE_ENABLED) {
+    return <Redirect href="/" />;
+  }
+  return <HistoryList />;
+}
+
+function HistoryList() {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [loaded, setLoaded] = useState(false);
 

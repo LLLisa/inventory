@@ -5,11 +5,20 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Platform } from 'react-native';
 
 import { type Answers } from '@/data/fullText';
 
 const DRAFT_KEY = 'inventory:draft:v1';
 const ENTRIES_KEY = 'inventory:entries:v1';
+
+/**
+ * Persistence is native-only. On the web the app stores nothing of any kind
+ * (matching the legacy site) — a downloaded PDF is the only way to keep a record.
+ * Every function below short-circuits on web so AsyncStorage/localStorage is
+ * never touched there.
+ */
+export const STORAGE_ENABLED = Platform.OS !== 'web';
 
 export interface Entry {
   id: string;
@@ -21,6 +30,7 @@ export interface Entry {
 // --- Draft (the in-progress inventory) ---
 
 export async function loadDraft(): Promise<Answers | null> {
+  if (!STORAGE_ENABLED) return null;
   try {
     const raw = await AsyncStorage.getItem(DRAFT_KEY);
     return raw ? (JSON.parse(raw) as Answers) : null;
@@ -30,6 +40,7 @@ export async function loadDraft(): Promise<Answers | null> {
 }
 
 export async function saveDraft(answers: Answers): Promise<void> {
+  if (!STORAGE_ENABLED) return;
   try {
     await AsyncStorage.setItem(DRAFT_KEY, JSON.stringify(answers));
   } catch {
@@ -38,6 +49,7 @@ export async function saveDraft(answers: Answers): Promise<void> {
 }
 
 export async function clearDraft(): Promise<void> {
+  if (!STORAGE_ENABLED) return;
   try {
     await AsyncStorage.removeItem(DRAFT_KEY);
   } catch {
@@ -48,6 +60,7 @@ export async function clearDraft(): Promise<void> {
 // --- Saved entries (the user's history) ---
 
 export async function loadEntries(): Promise<Entry[]> {
+  if (!STORAGE_ENABLED) return [];
   try {
     const raw = await AsyncStorage.getItem(ENTRIES_KEY);
     const entries = raw ? (JSON.parse(raw) as Entry[]) : [];
@@ -64,12 +77,14 @@ export async function addEntry(answers: Answers): Promise<Entry> {
     savedAt: new Date().toISOString(),
     answers,
   };
+  if (!STORAGE_ENABLED) return entry;
   const entries = await loadEntries();
   await AsyncStorage.setItem(ENTRIES_KEY, JSON.stringify([entry, ...entries]));
   return entry;
 }
 
 export async function deleteEntry(id: string): Promise<void> {
+  if (!STORAGE_ENABLED) return;
   const entries = await loadEntries();
   await AsyncStorage.setItem(ENTRIES_KEY, JSON.stringify(entries.filter((e) => e.id !== id)));
 }

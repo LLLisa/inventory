@@ -71,7 +71,6 @@ export default function InventoryStep() {
           <Text style={styles.sectionTitle} role="heading" aria-level={1}>
             {page.title}
           </Text>
-          <View style={styles.sectionDivider} />
         </View>
       )}
 
@@ -153,13 +152,6 @@ const styles = StyleSheet.create({
     color: Colors.text,
     textAlign: 'center',
     lineHeight: 30,
-  },
-  sectionDivider: {
-    width: '55%',
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: Colors.darkGray,
-    marginTop: Spacing.md,
   },
   form: {
     marginTop: Spacing.sm,

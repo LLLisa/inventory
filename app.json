@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "NA Daily Inventory",
+    "slug": "na-daily-inventory",
+    "version": "3.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "nadailyinventory",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "icon": "./assets/expo.icon",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nadailyinventory.app"
+    },
+    "android": {
+      "package": "com.nadailyinventory.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0000FF",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "static",
+      "bundler": "metro",
+      "favicon": "./assets/images/favicon.png",
+      "name": "NA Daily Inventory",
+      "shortName": "NA Inventory",
+      "lang": "en",
+      "themeColor": "#0000FF",
+      "backgroundColor": "#eeeeee",
+      "description": "A private, anonymous daily 10th-step inventory tool for members of Narcotics Anonymous, based on IP #9 \"Living the Program\"."
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0000FF",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 120
+        }
+      ],
+      "expo-sharing"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

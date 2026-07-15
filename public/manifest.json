@@ -1,0 +1,24 @@
+{
+  "name": "NA Daily Inventory",
+  "short_name": "NA Inventory",
+  "description": "A private, anonymous daily 10th-step inventory tool for members of Narcotics Anonymous, based on IP #9 'Living the Program'.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eeeeee",
+  "theme_color": "#0000FF",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ]
+}

@@ -11,7 +11,7 @@ export const Colors = {
   textWhite: 'rgb(255, 255, 255)',
   bgWhite: 'rgb(255, 255, 255)',
   /** App background */
-  bgOffWhite: '#eeeeee',
+  bgOffWhite: '#f4f4f4',
   darkGray: '#6e6e6e',
   borderGray: '#dddddd',
   text: '#1a1a1a',

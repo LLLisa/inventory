@@ -30,7 +30,7 @@
       "shortName": "NA Inventory",
       "lang": "en",
       "themeColor": "#0000FF",
-      "backgroundColor": "#eeeeee",
+      "backgroundColor": "#f4f4f4",
       "description": "A private, anonymous daily 10th-step inventory tool for members of Narcotics Anonymous, based on IP #9 \"Living the Program\"."
     },
     "plugins": [

@@ -41,13 +41,13 @@ export default function Root({ children }: PropsWithChildren) {
 const globalStyles = `
 html, body, #root { height: 100%; }
 body {
-  background-color: #eeeeee;
+  background-color: #f4f4f4;
   overscroll-behavior-y: none;
 }
 /* On wide screens, frame the reading column with a subtle gradient (legacy behavior). */
 @media screen and (min-width: 850px) {
   body {
-    background: linear-gradient(to right, #6e6e6e 0%, #eeeeee 22%, #eeeeee 78%, #6e6e6e 100%);
+    background: linear-gradient(to right, #6e6e6e 0%, #f4f4f4 22%, #f4f4f4 78%, #6e6e6e 100%);
   }
 }
 `;

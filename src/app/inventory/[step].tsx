@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     lineHeight: 30,
   },
   sectionDivider: {
-    width: 64,
+    width: '55%',
     height: 3,
     borderRadius: 2,
     backgroundColor: Colors.darkGray,

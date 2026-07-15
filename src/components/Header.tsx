@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Link, usePathname, useRouter } from 'expo-router';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Colors, HeaderHeight, MaxContentWidth } from '@/constants/theme';
@@ -29,6 +29,14 @@ export default function Header() {
       style={[styles.header, { paddingTop: insets.top, height: HeaderHeight + insets.top }]}
       role="banner">
       <View style={styles.nav}>
+        <View pointerEvents="box-none" style={styles.titleWrap}>
+          <Link href="/" accessibilityLabel="Home">
+            <Text style={styles.homeTitle} role="heading" aria-level={1}>
+              Living the Program
+            </Text>
+          </Link>
+        </View>
+
         <View style={styles.side}>
           {showBack ? (
             <Pressable
@@ -42,15 +50,6 @@ export default function Header() {
             <View style={styles.navButton} />
           )}
         </View>
-
-        <Link href="/" style={styles.homeLink} accessibilityLabel="Home">
-          <Text
-            style={styles.homeTitle}
-            role="heading"
-            aria-level={1}>
-            Living the Program
-          </Text>
-        </Link>
 
         <View style={styles.side}>
           {showNext ? (
@@ -102,13 +101,14 @@ const styles = StyleSheet.create({
   navButtonPressed: {
     backgroundColor: Colors.lightBlue,
   },
-  homeLink: {
-    flex: 1,
+  titleWrap: {
+    ...StyleSheet.absoluteFillObject,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   homeTitle: {
     color: Colors.textWhite,
-    fontSize: 22,
+    fontSize: Platform.OS === 'web' ? 28 : 22,
     fontWeight: 'bold',
     textAlign: 'center',
   },

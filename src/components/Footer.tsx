@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
   footer: {
     backgroundColor: Colors.blue,
     width: '100%',
-    minHeight: 24,
+    minHeight: 36,
   },
 });

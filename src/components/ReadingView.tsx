@@ -1,5 +1,7 @@
+import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
+import Button from '@/components/Button';
 import CopyrightNote from '@/components/CopyrightNote';
 import Screen from '@/components/Screen';
 import Seo, { SITE_URL } from '@/components/Seo';
@@ -13,6 +15,7 @@ interface ReadingViewProps {
 
 /** Renders a read-only Step Ten passage as semantic paragraphs with SEO + JSON-LD. */
 export default function ReadingView({ reading, description }: ReadingViewProps) {
+  const router = useRouter();
   const path = `/${reading.slug}`;
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -51,6 +54,8 @@ export default function ReadingView({ reading, description }: ReadingViewProps) 
 
       <Text style={styles.pageRef}>{reading.pageReference}</Text>
       <CopyrightNote text={reading.copyright} />
+
+      <Button label="Back" variant="outline" onPress={() => router.push('/')} style={styles.back} />
     </Screen>
   );
 }
@@ -91,5 +96,11 @@ const styles = StyleSheet.create({
     color: Colors.textMuted,
     textAlign: 'center',
     marginTop: Spacing.sm,
+  },
+  back: {
+    alignSelf: 'center',
+    minWidth: 160,
+    marginTop: Spacing.lg,
+    marginBottom: Spacing.md,
   },
 });

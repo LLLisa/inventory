@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
-import { Image, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { MetaLink } from '@/components/MenuLink';
 import Screen from '@/components/Screen';
@@ -76,12 +76,6 @@ export default function MenuScreen() {
       />
 
       <View style={styles.hero}>
-        <Image
-          source={require('../../assets/images/icon.png')}
-          style={styles.logo}
-          resizeMode="contain"
-          accessibilityLabel="NA Daily Inventory logo"
-        />
         <Text style={styles.tagline}>
           A private, anonymous daily tenth-step inventory for members of Narcotics Anonymous.
         </Text>
@@ -147,11 +141,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: Spacing.md,
     paddingBottom: Spacing.sm,
-  },
-  logo: {
-    width: 84,
-    height: 84,
-    marginBottom: Spacing.sm,
   },
   tagline: {
     fontSize: 16,

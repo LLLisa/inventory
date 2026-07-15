@@ -39,14 +39,12 @@ function MenuCard({ href, title, description, icon }: MenuCardProps) {
           const { pressed, hovered } = s as PressState;
           return [styles.card, (pressed || hovered) && styles.cardActive];
         }}>
-        <View style={styles.iconWrap}>
-          <Ionicons name={icon} size={22} color={Colors.blue} />
-        </View>
-        <View style={styles.cardText}>
+        <View style={styles.titleRow}>
+          <Ionicons name={icon} size={26} color={Colors.blue} />
           <Text style={styles.cardTitle}>{title}</Text>
-          <Text style={styles.cardDesc}>{description}</Text>
+          <Ionicons name="chevron-forward" size={20} color={Colors.borderGray} />
         </View>
-        <Ionicons name="chevron-forward" size={20} color={Colors.borderGray} />
+        <Text style={styles.cardDesc}>{description}</Text>
       </Pressable>
     </Link>
   );
@@ -154,9 +152,6 @@ const styles = StyleSheet.create({
     gap: Spacing.md,
   },
   card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.md,
     padding: Spacing.md,
     borderRadius: 14,
     backgroundColor: Colors.bgWhite,
@@ -167,26 +162,22 @@ const styles = StyleSheet.create({
   cardActive: {
     borderColor: Colors.blue,
   },
-  iconWrap: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
+  titleRow: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#e8eafe',
-  },
-  cardText: {
-    flex: 1,
+    gap: Spacing.sm,
   },
   cardTitle: {
-    fontSize: 18,
+    flex: 1,
+    fontSize: 22,
     fontWeight: 'bold',
     color: Colors.blue,
   },
   cardDesc: {
-    fontSize: 13,
+    fontSize: 14,
     color: Colors.textMuted,
-    marginTop: 2,
+    marginTop: Spacing.xs,
+    marginLeft: 26 + Spacing.sm,
   },
   metaRow: {
     marginTop: Spacing.xl,

@@ -1,5 +1,7 @@
 import { Link, useLocalSearchParams, useRouter } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect } from 'react';
+import { Platform, StyleSheet, Text, View } from 'react-native';
+import Animated, { SlideInLeft, SlideInRight } from 'react-native-reanimated';
 
 import Button from '@/components/Button';
 import CopyrightNote from '@/components/CopyrightNote';
@@ -14,6 +16,10 @@ import { fullText, inventoryCopyright, LAST_PAGE } from '@/data/fullText';
 export function generateStaticParams(): { step: string }[] {
   return Array.from({ length: LAST_PAGE + 1 }, (_, i) => ({ step: String(i) }));
 }
+
+// Tracks the previously shown step (module scope, survives the route re-render)
+// so we can slide the new page in from the correct side.
+let lastStep = 0;
 
 export default function InventoryStep() {
   const router = useRouter();
@@ -47,16 +53,15 @@ export default function InventoryStep() {
     if (step > 1) router.push(`/inventory/${step - 1}`);
   };
 
-  return (
-    <Screen
-      onSwipeLeft={canSwipe ? goNext : undefined}
-      onSwipeRight={canSwipe ? goPrev : undefined}>
-      <Seo
-        path={`/inventory/${step}`}
-        title={isIntro ? 'Begin a Daily Inventory' : `Daily Inventory — Part ${step}`}
-        description="Work through a private daily 10th-step inventory based on NA IP #9, 'Living the Program'. Your answers stay on your device."
-      />
+  // Slide the new page in from the right when advancing, from the left when
+  // going back. `lastStep` is read during render, then updated after commit.
+  const forward = step >= lastStep;
+  useEffect(() => {
+    lastStep = step;
+  }, [step]);
 
+  const body = (
+    <>
       <Text
         style={[styles.title, isIntro && styles.introTitle]}
         role="heading"
@@ -91,11 +96,37 @@ export default function InventoryStep() {
       )}
 
       <CopyrightNote text={inventoryCopyright} />
+    </>
+  );
+
+  return (
+    <Screen
+      onSwipeLeft={canSwipe ? goNext : undefined}
+      onSwipeRight={canSwipe ? goPrev : undefined}>
+      <Seo
+        path={`/inventory/${step}`}
+        title={isIntro ? 'Begin a Daily Inventory' : `Daily Inventory — Part ${step}`}
+        description="Work through a private daily 10th-step inventory based on NA IP #9, 'Living the Program'. Your answers stay on your device."
+      />
+
+      {Platform.OS === 'web' ? (
+        body
+      ) : (
+        <Animated.View
+          key={step}
+          entering={(forward ? SlideInRight : SlideInLeft).duration(240)}
+          style={styles.page}>
+          {body}
+        </Animated.View>
+      )}
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  page: {
+    width: '100%',
+  },
   title: {
     fontSize: 18,
     fontStyle: 'italic',

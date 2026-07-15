@@ -37,10 +37,20 @@ export default function FinishActions({ onBack }: { onBack: () => void }) {
     }
   };
 
+  // On the web the app stores nothing, so a PDF download is the only record; on
+  // native, entries are saved to on-device history instead (no PDF option).
+  const isWeb = !STORAGE_ENABLED;
+
   return (
     <View style={styles.container}>
-      <Button label="Download PDF" onPress={handleDownload} style={styles.button} />
-      {STORAGE_ENABLED ? (
+      {isWeb ? (
+        <>
+          <Button label="Download PDF" onPress={handleDownload} style={styles.button} />
+          <Text style={styles.note}>
+            Nothing you enter is saved anywhere. Download a PDF to keep a copy of your responses.
+          </Text>
+        </>
+      ) : (
         <>
           <Button
             label={saved ? 'Saved ✓' : 'Save to my history'}
@@ -53,12 +63,10 @@ export default function FinishActions({ onBack }: { onBack: () => void }) {
             Saving keeps this entry on your device only. It is never uploaded anywhere.
           </Text>
         </>
-      ) : (
-        <Text style={styles.note}>
-          Nothing you enter is saved anywhere. Download a PDF to keep a copy of your responses.
-        </Text>
       )}
-      <Button label="Back" variant="outline" onPress={onBack} style={styles.back} />
+      {isWeb ? (
+        <Button label="Back" variant="outline" onPress={onBack} style={styles.back} />
+      ) : null}
     </View>
   );
 }

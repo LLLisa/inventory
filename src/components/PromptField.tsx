@@ -28,11 +28,19 @@ function YesNo({ promptKey }: { promptKey: string }) {
   );
 }
 
-function TextField({ promptKey, big }: { promptKey: string; big?: boolean }) {
+function TextField({
+  promptKey,
+  big,
+  tall,
+}: {
+  promptKey: string;
+  big?: boolean;
+  tall?: boolean;
+}) {
   const { answers, setAnswer } = useInventory();
   return (
     <TextInput
-      style={[styles.input, big && styles.inputBig]}
+      style={[styles.input, big && styles.inputBig, big && tall && styles.inputTall]}
       value={answers[promptKey]}
       onChangeText={(text) => setAnswer(promptKey, text)}
       multiline={big}
@@ -44,7 +52,7 @@ function TextField({ promptKey, big }: { promptKey: string; big?: boolean }) {
 }
 
 /** Renders one prompt (and its optional follow-up) according to its type. */
-export default function PromptField({ prompt }: { prompt: Prompt }) {
+export default function PromptField({ prompt, tall }: { prompt: Prompt; tall?: boolean }) {
   if (prompt.type === promptType.plainText) {
     return <Text style={styles.plain}>{prompt.text}</Text>;
   }
@@ -59,7 +67,7 @@ export default function PromptField({ prompt }: { prompt: Prompt }) {
       ) : (
         <>
           <Text style={styles.label}>{prompt.text}</Text>
-          <TextField promptKey={prompt.text} big={prompt.type === promptType.bigText} />
+          <TextField promptKey={prompt.text} big={prompt.type === promptType.bigText} tall={tall} />
         </>
       )}
 
@@ -106,6 +114,9 @@ const styles = StyleSheet.create({
   },
   inputBig: {
     minHeight: 110,
+  },
+  inputTall: {
+    minHeight: 220,
   },
   yesNoField: {
     flexDirection: 'row',

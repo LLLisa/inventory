@@ -71,7 +71,7 @@ export default function InventoryStep() {
 
       <View style={styles.form}>
         {page.prompts.map((prompt) => (
-          <PromptField key={prompt.text} prompt={prompt} />
+          <PromptField key={prompt.text} prompt={prompt} tall={isLast} />
         ))}
       </View>
 
@@ -79,7 +79,7 @@ export default function InventoryStep() {
         <Button label="Begin" onPress={() => router.push('/inventory/1')} style={styles.begin} />
       ) : isLast ? (
         <FinishActions onBack={() => router.push(`/inventory/${step - 1}`)} />
-      ) : (
+      ) : Platform.OS === 'web' ? (
         <View style={styles.navRow}>
           <Button
             label="Back"
@@ -93,7 +93,7 @@ export default function InventoryStep() {
             style={styles.navButton}
           />
         </View>
-      )}
+      ) : null}
 
       <CopyrightNote text={inventoryCopyright} />
     </>

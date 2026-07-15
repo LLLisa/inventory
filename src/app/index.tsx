@@ -31,20 +31,25 @@ interface MenuCardProps {
 }
 
 function MenuCard({ href, title, description, icon }: MenuCardProps) {
+  // Render the card as an inner View via Pressable's function-child. Applying the
+  // style directly to the Pressable fails here because <Link asChild> slots the
+  // Pressable into an <a> and drops its function style; a child View keeps it.
   return (
     <Link href={href as never} asChild>
-      <Pressable
-        accessibilityRole="link"
-        style={(s) => {
+      <Pressable accessibilityRole="link" style={styles.cardPress}>
+        {(s) => {
           const { pressed, hovered } = s as PressState;
-          return [styles.card, (pressed || hovered) && styles.cardActive];
-        }}>
-        <View style={styles.titleRow}>
-          <Ionicons name={icon} size={26} color={Colors.blue} />
-          <Text style={styles.cardTitle}>{title}</Text>
-          <Ionicons name="chevron-forward" size={20} color={Colors.borderGray} />
-        </View>
-        <Text style={styles.cardDesc}>{description}</Text>
+          return (
+            <View style={[styles.card, (pressed || hovered) && styles.cardActive]}>
+              <View style={styles.titleRow}>
+                <Ionicons name={icon} size={26} color={Colors.blue} />
+                <Text style={styles.cardTitle}>{title}</Text>
+                <Ionicons name="chevron-forward" size={20} color={Colors.borderGray} />
+              </View>
+              <Text style={styles.cardDesc}>{description}</Text>
+            </View>
+          );
+        }}
       </Pressable>
     </Link>
   );
@@ -140,7 +145,11 @@ const styles = StyleSheet.create({
     marginTop: Spacing.lg,
     gap: Spacing.md,
   },
+  cardPress: {
+    alignSelf: 'stretch',
+  },
   card: {
+    width: '100%',
     padding: Spacing.md,
     borderRadius: 14,
     backgroundColor: Colors.bgWhite,

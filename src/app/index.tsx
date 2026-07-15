@@ -70,7 +70,7 @@ function StoreBadge({ store }: { store: 'ios' | 'android' }) {
 
 export default function MenuScreen() {
   return (
-    <Screen>
+    <Screen contentStyle={styles.fill}>
       <Seo
         path="/"
         title="NA Daily Inventory — A Private 10th Step Tool for Narcotics Anonymous"
@@ -195,8 +195,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     columnGap: Spacing.sm,
   },
+  fill: {
+    flexGrow: 1,
+  },
   stores: {
-    marginTop: Spacing.xl,
+    marginTop: 'auto',
+    paddingTop: Spacing.xl,
     alignItems: 'center',
     gap: Spacing.sm,
   },

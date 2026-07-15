@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bgOffWhite,
   },
   scrollContent: {
+    flexGrow: 1,
     alignItems: 'center',
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.sm,

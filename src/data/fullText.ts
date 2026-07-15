@@ -164,6 +164,10 @@ export const LAST_PAGE = fullText.length - 1;
 /** Pages 1–5 hold questions; page 0 is intro, last page is Notes. */
 export const FIRST_QUESTION_PAGE = 1;
 
+/** Copyright covering all inventory content (NA IP #9, "Living the Program"). */
+export const inventoryCopyright =
+  'Copyright © 1983 by Narcotics Anonymous World Services, Inc. All rights reserved.';
+
 export type Answers = Record<string, string>;
 
 /**

@@ -2,12 +2,13 @@ import { Link, useLocalSearchParams, useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Button from '@/components/Button';
+import CopyrightNote from '@/components/CopyrightNote';
 import FinishActions from '@/components/FinishActions';
 import PromptField from '@/components/PromptField';
 import Screen from '@/components/Screen';
 import Seo from '@/components/Seo';
 import { Colors, Spacing } from '@/constants/theme';
-import { fullText, LAST_PAGE } from '@/data/fullText';
+import { fullText, inventoryCopyright, LAST_PAGE } from '@/data/fullText';
 
 /** Pre-render each inventory step (0…LAST_PAGE) to its own static HTML file. */
 export function generateStaticParams(): { step: string }[] {
@@ -77,6 +78,8 @@ export default function InventoryStep() {
           />
         </View>
       )}
+
+      <CopyrightNote text={inventoryCopyright} />
     </Screen>
   );
 }

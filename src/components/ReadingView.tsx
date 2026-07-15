@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import CopyrightNote from '@/components/CopyrightNote';
 import Screen from '@/components/Screen';
-import Seo, { SITE_NAME, SITE_URL } from '@/components/Seo';
+import Seo, { SITE_URL } from '@/components/Seo';
 import { Colors, Spacing } from '@/constants/theme';
 import { type Reading } from '@/data/readings';
 
@@ -49,10 +50,7 @@ export default function ReadingView({ reading, description }: ReadingViewProps) 
       </View>
 
       <Text style={styles.pageRef}>{reading.pageReference}</Text>
-      <Text style={styles.attribution}>
-        All textual content is copyright Narcotics Anonymous World Services, Inc. Reproduced by{' '}
-        {SITE_NAME}.
-      </Text>
+      <CopyrightNote text={reading.copyright} />
     </Screen>
   );
 }
@@ -93,11 +91,5 @@ const styles = StyleSheet.create({
     color: Colors.textMuted,
     textAlign: 'center',
     marginTop: Spacing.sm,
-  },
-  attribution: {
-    fontSize: 12,
-    color: Colors.textMuted,
-    textAlign: 'center',
-    marginTop: Spacing.md,
   },
 });

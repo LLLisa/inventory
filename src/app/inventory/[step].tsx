@@ -68,10 +68,10 @@ export default function InventoryStep() {
         </Text>
       ) : (
         <View style={styles.sectionHeader}>
-          <View style={styles.accent} />
           <Text style={styles.sectionTitle} role="heading" aria-level={1}>
             {page.title}
           </Text>
+          <View style={styles.sectionDivider} />
         </View>
       )}
 
@@ -142,24 +142,24 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.lg,
   },
   sectionHeader: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    gap: Spacing.sm,
+    alignItems: 'center',
     marginTop: Spacing.sm,
     marginBottom: Spacing.lg,
   },
-  accent: {
-    width: 4,
-    borderRadius: 2,
-    backgroundColor: Colors.blue,
-  },
   sectionTitle: {
-    flex: 1,
-    fontSize: 18,
+    fontSize: 21,
     fontStyle: 'italic',
     fontWeight: '600',
     color: Colors.text,
-    lineHeight: 24,
+    textAlign: 'center',
+    lineHeight: 30,
+  },
+  sectionDivider: {
+    width: 64,
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: Colors.blue,
+    marginTop: Spacing.md,
   },
   form: {
     marginTop: Spacing.sm,

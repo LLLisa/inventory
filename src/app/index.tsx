@@ -123,17 +123,6 @@ export default function MenuScreen() {
   );
 }
 
-const cardShadow = Platform.select({
-  web: { boxShadow: '0 1px 3px rgba(0,0,0,0.08)' },
-  default: {
-    elevation: 1,
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 1 },
-  },
-});
-
 const styles = StyleSheet.create({
   hero: {
     alignItems: 'center',
@@ -155,9 +144,8 @@ const styles = StyleSheet.create({
     padding: Spacing.md,
     borderRadius: 14,
     backgroundColor: Colors.bgWhite,
-    borderWidth: 1,
-    borderColor: '#b0b0b0',
-    ...cardShadow,
+    borderWidth: 2,
+    borderColor: Colors.darkGray,
   },
   cardActive: {
     borderColor: Colors.blue,

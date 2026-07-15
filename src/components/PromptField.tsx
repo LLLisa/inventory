@@ -81,7 +81,7 @@ export default function PromptField({ prompt, tall }: { prompt: Prompt; tall?: b
   const isYesNo = prompt.type === promptType.yesNo;
 
   return (
-    <View style={[styles.field, isLarge && styles.card]}>
+    <View style={styles.card}>
       {isYesNo ? (
         isLarge ? (
           // Wide: question and answer share a row.
@@ -114,9 +114,6 @@ export default function PromptField({ prompt, tall }: { prompt: Prompt; tall?: b
 }
 
 const styles = StyleSheet.create({
-  field: {
-    marginBottom: Spacing.lg,
-  },
   card: {
     backgroundColor: Colors.bgWhite,
     borderWidth: 1,

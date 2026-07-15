@@ -156,8 +156,8 @@ const styles = StyleSheet.create({
   },
   sectionDivider: {
     width: '55%',
-    height: 3,
-    borderRadius: 2,
+    height: 2,
+    borderRadius: 1,
     backgroundColor: Colors.darkGray,
     marginTop: Spacing.md,
   },

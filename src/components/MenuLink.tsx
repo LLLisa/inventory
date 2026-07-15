@@ -41,31 +41,30 @@ interface MetaLinkProps {
 
 /** Small secondary link used in the footer row of the menu. */
 export function MetaLink({ title, href, url, icon }: MetaLinkProps) {
-  const content = (
-    <>
-      <Ionicons name={icon} size={18} color={Colors.blue} />
-      <Text style={styles.metaText}>{title}</Text>
-    </>
-  );
-
-  const pressableStyle = (s: unknown) => {
+  // Render the row as an inner View via Pressable's function-child. A function
+  // `style` on the Pressable is dropped when it's slotted into <Link asChild>,
+  // which stripped `flex-direction: row` and stacked the icon above the text.
+  const renderInner = (s: unknown) => {
     const { pressed, hovered } = s as PressState;
-    return [styles.meta, (pressed || hovered) && styles.metaActive];
+    return (
+      <View style={[styles.meta, (pressed || hovered) && styles.metaActive]}>
+        <Ionicons name={icon} size={18} color={Colors.blue} />
+        <Text style={styles.metaText}>{title}</Text>
+      </View>
+    );
   };
 
   if (url) {
     return (
-      <Pressable accessibilityRole="link" onPress={() => Linking.openURL(url)} style={pressableStyle}>
-        {content}
+      <Pressable accessibilityRole="link" onPress={() => Linking.openURL(url)}>
+        {renderInner}
       </Pressable>
     );
   }
 
   return (
     <Link href={href as never} asChild>
-      <Pressable accessibilityRole="link" style={pressableStyle}>
-        {content}
-      </Pressable>
+      <Pressable accessibilityRole="link">{renderInner}</Pressable>
     </Link>
   );
 }

@@ -38,8 +38,19 @@ export default function InventoryStep() {
   const isIntro = step === 0;
   const isLast = step === LAST_PAGE;
 
+  // Swipe navigation across the inventory pages (1…LAST_PAGE), native only.
+  const canSwipe = step >= 1 && step <= LAST_PAGE;
+  const goNext = () => {
+    if (step < LAST_PAGE) router.push(`/inventory/${step + 1}`);
+  };
+  const goPrev = () => {
+    if (step > 1) router.push(`/inventory/${step - 1}`);
+  };
+
   return (
-    <Screen>
+    <Screen
+      onSwipeLeft={canSwipe ? goNext : undefined}
+      onSwipeRight={canSwipe ? goPrev : undefined}>
       <Seo
         path={`/inventory/${step}`}
         title={isIntro ? 'Begin a Daily Inventory' : `Daily Inventory — Part ${step}`}

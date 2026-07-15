@@ -40,7 +40,12 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "build:web": "expo export -p web",
+    "heroku-postbuild": "expo export -p web",
+    "serve": "node server.js",
     "lint": "expo lint"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "private": true
 }

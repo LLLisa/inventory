@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     backgroundColor: Colors.bgWhite,
     borderWidth: 1,
-    borderColor: Colors.borderGray,
+    borderColor: '#b0b0b0',
     ...cardShadow,
   },
   cardActive: {
@@ -177,7 +177,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.textMuted,
     marginTop: Spacing.xs,
-    marginLeft: 26 + Spacing.sm,
   },
   metaRow: {
     marginTop: Spacing.xl,

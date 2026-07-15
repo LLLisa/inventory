@@ -78,11 +78,13 @@ export default function MenuScreen() {
         jsonLd={jsonLd}
       />
 
-      <View style={styles.hero}>
-        <Text style={styles.tagline}>
-          A private, anonymous daily tenth-step inventory for members of Narcotics Anonymous.
-        </Text>
-      </View>
+      {Platform.OS === 'web' &&
+        <View style={styles.hero}>
+          <Text style={styles.tagline}>
+            A private, anonymous daily tenth-step inventory for members of Narcotics Anonymous.
+          </Text>
+        </View>
+      }
 
       <View style={styles.group}>
         <MenuCard

@@ -3,7 +3,6 @@ import { Link } from 'expo-router';
 import { Linking, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Colors, Spacing } from '@/constants/theme';
-import { useIsLarge } from '@/hooks/useResponsive';
 
 // react-native-web adds `hovered` to the Pressable state (not in core RN types).
 type PressState = { pressed: boolean; hovered?: boolean };
@@ -14,21 +13,15 @@ interface PrimaryLinkProps {
   description: string;
 }
 
-/** Large primary menu entry: bold heading + supporting line. Cards on wide screens. */
+/** Primary menu entry: a distinct card with a bold heading + supporting line. */
 export function PrimaryLink({ href, title, description }: PrimaryLinkProps) {
-  const isLarge = useIsLarge();
   return (
     <Link href={href as never} asChild>
       <Pressable
         accessibilityRole="link"
         style={(s) => {
           const { pressed, hovered } = s as PressState;
-          const active = pressed || hovered;
-          return [
-            styles.primary,
-            isLarge && styles.primaryCard,
-            active && (isLarge ? styles.primaryCardActive : styles.primaryPressed),
-          ];
+          return [styles.primaryCard, (pressed || hovered) && styles.primaryCardActive];
         }}>
         <Text style={styles.primaryTitle}>{title}</Text>
         <Text style={styles.primaryDesc}>{description}</Text>
@@ -89,17 +82,11 @@ const shadow = Platform.select({
 });
 
 const styles = StyleSheet.create({
-  primary: {
-    paddingVertical: Spacing.md,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.borderGray,
-  },
   primaryCard: {
-    borderBottomWidth: 0,
     backgroundColor: Colors.bgWhite,
     borderWidth: 1,
     borderColor: Colors.borderGray,
-    borderRadius: 12,
+    borderRadius: 14,
     paddingHorizontal: Spacing.lg,
     paddingVertical: Spacing.lg,
     marginBottom: Spacing.md,
@@ -107,9 +94,6 @@ const styles = StyleSheet.create({
   },
   primaryCardActive: {
     borderColor: Colors.blue,
-  },
-  primaryPressed: {
-    opacity: 0.6,
   },
   primaryTitle: {
     color: Colors.blue,

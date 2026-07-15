@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 3,
     borderRadius: 2,
-    backgroundColor: Colors.blue,
+    backgroundColor: Colors.darkGray,
     marginTop: Spacing.md,
   },
   form: {

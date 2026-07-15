@@ -1,15 +1,30 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useState } from 'react';
+import {
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  type StyleProp,
+  type ViewStyle,
+} from 'react-native';
 
 import { Colors, Spacing } from '@/constants/theme';
 import { promptType, type Prompt } from '@/data/fullText';
+import { useIsLarge } from '@/hooks/useResponsive';
 import { useInventory } from '@/store/inventory';
 
-function YesNo({ promptKey }: { promptKey: string }) {
+// react-native-web adds `hovered`/`focused` to the Pressable state; not in the
+// core RN types, so widen it here.
+type PressState = { pressed: boolean; hovered?: boolean; focused?: boolean };
+
+function YesNo({ promptKey, style }: { promptKey: string; style?: StyleProp<ViewStyle> }) {
   const { answers, setAnswer } = useInventory();
   const value = answers[promptKey];
 
   return (
-    <View style={styles.yesNoRow}>
+    <View style={[styles.yesNoRow, style]}>
       {(['yes', 'no'] as const).map((option) => {
         const selected = value === option;
         return (
@@ -19,7 +34,11 @@ function YesNo({ promptKey }: { promptKey: string }) {
             accessibilityState={{ selected }}
             accessibilityLabel={`${promptKey} — ${option}`}
             onPress={() => setAnswer(promptKey, selected ? '' : option)}
-            style={[styles.yesNoButton, selected && styles.yesNoButtonSelected]}>
+            style={(state) => [
+              styles.yesNoButton,
+              (state as PressState).hovered && !selected && styles.yesNoButtonHover,
+              selected && styles.yesNoButtonSelected,
+            ]}>
             <Text style={[styles.yesNoText, selected && styles.yesNoTextSelected]}>{option}</Text>
           </Pressable>
         );
@@ -28,21 +47,21 @@ function YesNo({ promptKey }: { promptKey: string }) {
   );
 }
 
-function TextField({
-  promptKey,
-  big,
-  tall,
-}: {
-  promptKey: string;
-  big?: boolean;
-  tall?: boolean;
-}) {
+function TextField({ promptKey, big, tall }: { promptKey: string; big?: boolean; tall?: boolean }) {
   const { answers, setAnswer } = useInventory();
+  const [focused, setFocused] = useState(false);
   return (
     <TextInput
-      style={[styles.input, big && styles.inputBig, big && tall && styles.inputTall]}
+      style={[
+        styles.input,
+        big && styles.inputBig,
+        big && tall && styles.inputTall,
+        focused && styles.inputFocused,
+      ]}
       value={answers[promptKey]}
       onChangeText={(text) => setAnswer(promptKey, text)}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
       multiline={big}
       maxLength={3000}
       accessibilityLabel={promptKey}
@@ -53,17 +72,30 @@ function TextField({
 
 /** Renders one prompt (and its optional follow-up) according to its type. */
 export default function PromptField({ prompt, tall }: { prompt: Prompt; tall?: boolean }) {
+  const isLarge = useIsLarge();
+
   if (prompt.type === promptType.plainText) {
     return <Text style={styles.plain}>{prompt.text}</Text>;
   }
 
+  const isYesNo = prompt.type === promptType.yesNo;
+
   return (
-    <View style={styles.field}>
-      {prompt.type === promptType.yesNo ? (
-        <View style={styles.yesNoField}>
-          <Text style={styles.label}>{prompt.text}</Text>
-          <YesNo promptKey={prompt.text} />
-        </View>
+    <View style={[styles.field, isLarge && styles.card]}>
+      {isYesNo ? (
+        isLarge ? (
+          // Wide: question and answer share a row.
+          <View style={styles.yesNoInline}>
+            <Text style={[styles.label, styles.labelInline]}>{prompt.text}</Text>
+            <YesNo promptKey={prompt.text} />
+          </View>
+        ) : (
+          // Narrow: answer drops to its own right-aligned row (no left wrap).
+          <>
+            <Text style={styles.label}>{prompt.text}</Text>
+            <YesNo promptKey={prompt.text} style={styles.yesNoRight} />
+          </>
+        )
       ) : (
         <>
           <Text style={styles.label}>{prompt.text}</Text>
@@ -74,10 +106,7 @@ export default function PromptField({ prompt, tall }: { prompt: Prompt; tall?: b
       {prompt.sub ? (
         <View style={styles.sub}>
           <Text style={styles.label}>{prompt.sub.text}</Text>
-          <TextField
-            promptKey={prompt.sub.text}
-            big={prompt.sub.type === promptType.bigText}
-          />
+          <TextField promptKey={prompt.sub.text} big={prompt.sub.type === promptType.bigText} />
         </View>
       ) : null}
     </View>
@@ -88,6 +117,24 @@ const styles = StyleSheet.create({
   field: {
     marginBottom: Spacing.lg,
   },
+  card: {
+    backgroundColor: Colors.bgWhite,
+    borderWidth: 1,
+    borderColor: Colors.borderGray,
+    borderRadius: 12,
+    padding: Spacing.md,
+    marginBottom: Spacing.md,
+    ...Platform.select({
+      web: { boxShadow: '0 1px 3px rgba(0,0,0,0.07)' },
+      default: {
+        elevation: 1,
+        shadowColor: '#000',
+        shadowOpacity: 0.07,
+        shadowRadius: 3,
+        shadowOffset: { width: 0, height: 1 },
+      },
+    }),
+  },
   sub: {
     marginTop: Spacing.md,
   },
@@ -95,6 +142,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: Colors.text,
     marginBottom: Spacing.sm,
+  },
+  labelInline: {
+    flex: 1,
+    marginBottom: 0,
+    marginRight: Spacing.md,
   },
   plain: {
     fontSize: 16,
@@ -118,16 +170,25 @@ const styles = StyleSheet.create({
   inputTall: {
     minHeight: 220,
   },
-  yesNoField: {
+  inputFocused: {
+    borderColor: Colors.blue,
+    ...Platform.select({
+      web: { boxShadow: '0 0 0 3px rgba(0,0,255,0.15)' },
+      default: {},
+    }),
+  },
+  yesNoInline: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    gap: Spacing.sm,
   },
   yesNoRow: {
     flexDirection: 'row',
     gap: Spacing.sm,
+  },
+  yesNoRight: {
+    alignSelf: 'flex-end',
+    marginTop: Spacing.sm,
   },
   yesNoButton: {
     minWidth: 64,
@@ -137,6 +198,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.blue,
     alignItems: 'center',
+  },
+  yesNoButtonHover: {
+    backgroundColor: Colors.borderGray,
   },
   yesNoButtonSelected: {
     backgroundColor: Colors.blue,

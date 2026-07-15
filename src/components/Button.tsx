@@ -10,6 +10,9 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
+// react-native-web adds `hovered` to the Pressable state (not in core RN types).
+type PressState = { pressed: boolean; hovered?: boolean };
+
 export default function Button({ label, onPress, variant = 'solid', style, disabled }: ButtonProps) {
   const outline = variant === 'outline';
   return (
@@ -17,13 +20,17 @@ export default function Button({ label, onPress, variant = 'solid', style, disab
       accessibilityRole="button"
       onPress={onPress}
       disabled={disabled}
-      style={({ pressed }) => [
-        styles.base,
-        outline ? styles.outline : styles.solid,
-        pressed && !disabled && (outline ? styles.outlinePressed : styles.solidPressed),
-        disabled && styles.disabled,
-        style,
-      ]}>
+      style={(s) => {
+        const { pressed, hovered } = s as PressState;
+        const active = (pressed || hovered) && !disabled;
+        return [
+          styles.base,
+          outline ? styles.outline : styles.solid,
+          active && (outline ? styles.outlinePressed : styles.solidPressed),
+          disabled && styles.disabled,
+          style,
+        ];
+      }}>
       <Text style={[styles.label, outline ? styles.labelOutline : styles.labelSolid]}>{label}</Text>
     </Pressable>
   );

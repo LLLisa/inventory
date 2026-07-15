@@ -2,7 +2,7 @@ import * as NavigationBar from 'expo-navigation-bar';
 import { Slot } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { AppState, Platform, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -13,18 +13,22 @@ import { InventoryProvider } from '@/store/inventory';
 
 export default function RootLayout() {
   // Match the Android system navigation bar to the footer: brand blue with light
-  // icons. Under edge-to-edge the background call is a no-op (the footer already
-  // draws blue behind the transparent bar); the light button style still applies.
+  // icons. In a production build the light icon style is also set natively via
+  // app.json (androidNavigationBar.barStyle) so it is correct from the first
+  // frame; this runtime call covers Expo Go and re-asserts on resume. Under
+  // edge-to-edge the background call is a no-op (the footer draws blue behind the
+  // transparent bar); the light button style still applies.
   useEffect(() => {
     if (Platform.OS !== 'android') return;
-    (async () => {
-      try {
-        await NavigationBar.setButtonStyleAsync('light');
-        await NavigationBar.setBackgroundColorAsync(Colors.blue);
-      } catch {
-        // Unsupported on this Android version/config; the footer supplies the color.
-      }
-    })();
+    const apply = () => {
+      NavigationBar.setButtonStyleAsync('light').catch(() => {});
+      NavigationBar.setBackgroundColorAsync(Colors.blue).catch(() => {});
+    };
+    apply();
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') apply();
+    });
+    return () => sub.remove();
   }, []);
 
   return (

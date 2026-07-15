@@ -19,6 +19,9 @@
         "foregroundImage": "./assets/images/android-icon-foreground.png"
       }
     },
+    "androidNavigationBar": {
+      "barStyle": "light-content"
+    },
     "web": {
       "output": "static",
       "bundler": "metro",

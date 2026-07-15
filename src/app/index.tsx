@@ -28,35 +28,25 @@ interface MenuCardProps {
   title: string;
   description: string;
   icon: keyof typeof Ionicons.glyphMap;
-  emphasized?: boolean;
 }
 
-function MenuCard({ href, title, description, icon, emphasized }: MenuCardProps) {
+function MenuCard({ href, title, description, icon }: MenuCardProps) {
   return (
     <Link href={href as never} asChild>
       <Pressable
         accessibilityRole="link"
         style={(s) => {
           const { pressed, hovered } = s as PressState;
-          const active = pressed || hovered;
-          return [
-            styles.card,
-            emphasized ? styles.cardEmph : styles.cardPlain,
-            active && (emphasized ? styles.cardEmphActive : styles.cardPlainActive),
-          ];
+          return [styles.card, (pressed || hovered) && styles.cardActive];
         }}>
-        <View style={[styles.iconWrap, emphasized ? styles.iconWrapEmph : styles.iconWrapPlain]}>
-          <Ionicons name={icon} size={22} color={emphasized ? Colors.textWhite : Colors.blue} />
+        <View style={styles.iconWrap}>
+          <Ionicons name={icon} size={22} color={Colors.blue} />
         </View>
         <View style={styles.cardText}>
-          <Text style={[styles.cardTitle, emphasized && styles.cardTitleEmph]}>{title}</Text>
-          <Text style={[styles.cardDesc, emphasized && styles.cardDescEmph]}>{description}</Text>
+          <Text style={styles.cardTitle}>{title}</Text>
+          <Text style={styles.cardDesc}>{description}</Text>
         </View>
-        <Ionicons
-          name="chevron-forward"
-          size={20}
-          color={emphasized ? 'rgba(255,255,255,0.85)' : Colors.borderGray}
-        />
+        <Ionicons name="chevron-forward" size={20} color={Colors.borderGray} />
       </Pressable>
     </Link>
   );
@@ -100,7 +90,6 @@ export default function MenuScreen() {
       <View style={styles.group}>
         <MenuCard
           href="/inventory/0"
-          emphasized
           icon="create-outline"
           title="Begin Inventory"
           description="Start a daily tenth-step inventory using NA IP #9"
@@ -181,21 +170,13 @@ const styles = StyleSheet.create({
     gap: Spacing.md,
     padding: Spacing.md,
     borderRadius: 14,
-    ...cardShadow,
-  },
-  cardPlain: {
     backgroundColor: Colors.bgWhite,
     borderWidth: 1,
     borderColor: Colors.borderGray,
+    ...cardShadow,
   },
-  cardPlainActive: {
+  cardActive: {
     borderColor: Colors.blue,
-  },
-  cardEmph: {
-    backgroundColor: Colors.blue,
-  },
-  cardEmphActive: {
-    backgroundColor: Colors.lightBlue,
   },
   iconWrap: {
     width: 42,
@@ -203,12 +184,7 @@ const styles = StyleSheet.create({
     borderRadius: 21,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  iconWrapPlain: {
     backgroundColor: '#e8eafe',
-  },
-  iconWrapEmph: {
-    backgroundColor: 'rgba(255,255,255,0.2)',
   },
   cardText: {
     flex: 1,
@@ -218,16 +194,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: Colors.blue,
   },
-  cardTitleEmph: {
-    color: Colors.textWhite,
-  },
   cardDesc: {
     fontSize: 13,
     color: Colors.textMuted,
     marginTop: 2,
-  },
-  cardDescEmph: {
-    color: 'rgba(255,255,255,0.9)',
   },
   metaRow: {
     marginTop: Spacing.xl,

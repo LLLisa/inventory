@@ -8,6 +8,7 @@
     "scheme": "nadailyinventory",
     "userInterfaceStyle": "light",
     "ios": {
+      "icon": "./assets/images/icon-ios.png",
       "supportsTablet": true,
       "bundleIdentifier": "com.nadailyinventory.app"
     },

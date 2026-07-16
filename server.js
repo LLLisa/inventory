@@ -51,17 +51,22 @@ function isFile(p) {
   }
 }
 
-/** Map a URL path to a file inside dist/, honoring clean URLs. Guards traversal. */
-function resolveFile(urlPath) {
+/** Map a URL path to a file inside `root`, honoring clean URLs. Guards traversal. */
+function resolveFile(urlPath, root = DIST) {
   const clean = decodeURIComponent(urlPath);
   const rel = path.normalize(clean).replace(/^(\.\.(\/|\\|$))+/, '');
-  const base = path.join(DIST, rel);
-  if (base !== DIST && !base.startsWith(DIST + path.sep)) return null;
+  const base = path.join(root, rel);
+  if (base !== root && !base.startsWith(root + path.sep)) return null;
 
   if (path.extname(base)) return isFile(base) ? base : null;
   const candidates = [base + '.html', path.join(base, 'index.html')];
-  if (clean === '/') candidates.unshift(path.join(DIST, 'index.html'));
+  if (clean === '/') candidates.unshift(path.join(root, 'index.html'));
   return candidates.find(isFile) || null;
+}
+
+/** Content-hashed assets are safe to cache forever; HTML is not. */
+function isHashedAsset(file) {
+  return file.includes(path.sep + '_expo' + path.sep) || /\.[0-9a-f]{8,}\./.test(file);
 }
 
 const server = http.createServer((req, res) => {
@@ -81,10 +86,9 @@ const server = http.createServer((req, res) => {
   const file = resolveFile(urlPath);
   if (file) {
     const ext = path.extname(file).toLowerCase();
-    const hashed = file.includes(path.sep + '_expo' + path.sep) || /\.[0-9a-f]{8,}\./.test(file);
     res.writeHead(200, {
       'Content-Type': MIME[ext] || 'application/octet-stream',
-      'Cache-Control': hashed ? 'public, max-age=31536000, immutable' : 'no-cache',
+      'Cache-Control': isHashedAsset(file) ? 'public, max-age=31536000, immutable' : 'no-cache',
     });
     return fs.createReadStream(file).pipe(res);
   }
@@ -99,4 +103,10 @@ const server = http.createServer((req, res) => {
   res.end('Not found');
 });
 
-server.listen(PORT, () => console.log(`Serving dist/ on port ${PORT}`));
+// Only listen when run directly (`node server.js`); when required by tests the
+// helpers below are exported without opening a port.
+if (require.main === module) {
+  server.listen(PORT, () => console.log(`Serving dist/ on port ${PORT}`));
+}
+
+module.exports = { MIME, REDIRECTS, resolveFile, isHashedAsset };

@@ -15,7 +15,6 @@ function loadWebStorage() {
     jest.doMock('react-native', () => ({
       Platform: { OS: 'web', select: (o: Record<string, unknown>) => o.web ?? o.default },
     }));
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
     mod = require('@/services/storage');
   });
   return mod;

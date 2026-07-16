@@ -7,4 +7,13 @@ module.exports = defineConfig([
   {
     ignores: ['dist/*'],
   },
+  {
+    // Test files legitimately place jest.mock() before imports (hoisting) and
+    // use require() for controlled/isolated module loading.
+    files: ['**/__tests__/**', '**/*.test.{ts,tsx,js}', 'jest.setup.ts'],
+    rules: {
+      'import/first': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
 ]);

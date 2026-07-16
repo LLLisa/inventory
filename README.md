@@ -45,6 +45,13 @@ npm run ios      # iOS simulator (needs Xcode)
 npm run android  # Android emulator
 ```
 
+## Test
+
+```bash
+npm test         # run the Jest suite (jest-expo)
+npm run test:watch
+```
+
 ## Build the website
 
 ```bash

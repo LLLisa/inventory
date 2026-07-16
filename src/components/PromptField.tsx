@@ -132,9 +132,13 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.sm,
   },
   labelInline: {
-    flex: 1,
+    // `flexBasis: 'auto'` (not `flex: 1`, which forces basis 0) lets a long
+    // question claim the full row and drop the buttons to a right-aligned line
+    // below, instead of wrapping into a cramped column beside them.
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto',
     marginBottom: 0,
-    marginRight: Spacing.md,
   },
   plain: {
     fontSize: 18,
@@ -167,8 +171,13 @@ const styles = StyleSheet.create({
   },
   yesNoInline: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    // flex-end keeps the buttons right-aligned whether they share the
+    // question's line or wrap onto their own line beneath it.
+    justifyContent: 'flex-end',
+    rowGap: Spacing.sm,
+    columnGap: Spacing.md,
   },
   yesNoRow: {
     flexDirection: 'row',

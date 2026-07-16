@@ -43,6 +43,24 @@ jest.mock('expo-sharing', () => ({
 }));
 
 // Silence the Reanimated "reduced motion" warning in test output.
-jest.spyOn(console, 'warn').mockImplementation((msg?: unknown) => {
+const realWarn = console.warn.bind(console);
+jest.spyOn(console, 'warn').mockImplementation((msg?: unknown, ...rest: unknown[]) => {
   if (typeof msg === 'string' && msg.includes('Reduced motion')) return;
+  realWarn(msg, ...rest);
+});
+
+// The InventoryProvider hydrates from storage in an async effect, so its
+// setState lands after the initial render's act() scope closes. That's the
+// intended design (tests await it via waitFor); quiet only that specific,
+// benign act() warning so real ones still surface.
+const realError = console.error.bind(console);
+jest.spyOn(console, 'error').mockImplementation((msg?: unknown, ...rest: unknown[]) => {
+  if (
+    typeof msg === 'string' &&
+    (msg.includes('not configured to support act') ||
+      msg.includes('not wrapped in act'))
+  ) {
+    return;
+  }
+  realError(msg, ...rest);
 });

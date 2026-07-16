@@ -135,8 +135,14 @@ const styles = StyleSheet.create({
     // `flexBasis: 'auto'` (not `flex: 1`, which forces basis 0) lets a long
     // question claim the full row and drop the buttons to a right-aligned line
     // below, instead of wrapping into a cramped column beside them.
+    //
+    // `flexShrink: 0` is required for parity on native: web breaks the flex
+    // line from the label's max-content basis, but Yoga would otherwise shrink
+    // the text in place (never overflowing, never wrapping the row) and leave
+    // the question boxed beside the buttons. Forbidding the shrink forces the
+    // same wrap-to-full-width behavior on both platforms.
     flexGrow: 1,
-    flexShrink: 1,
+    flexShrink: 0,
     flexBasis: 'auto',
     marginBottom: 0,
   },

@@ -55,6 +55,7 @@ export default function Screen({
   if (!swipeEnabled) return scroll;
 
   const swipe = Gesture.Pan()
+    .withTestId('screen-swipe')
     .runOnJS(true)
     // Only claim clearly-horizontal drags; let vertical scrolls fall through.
     .activeOffsetX([-24, 24])

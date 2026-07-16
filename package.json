@@ -50,10 +50,16 @@
     "serve": "node server.js",
     "lint": "expo lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "jest": {
     "preset": "jest-expo",
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/__tests__/**",
+      "!src/types/**"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/jest.setup.ts"
     ],

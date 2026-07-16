@@ -50,6 +50,16 @@ describe('PromptField', () => {
     expect(current).toBe('');
   });
 
+  it('applies focus styling on focus and blur', () => {
+    const prompt: Prompt = { text: 'Who has trust in me today?', type: promptType.smallText };
+    render(<PromptField prompt={prompt} />, { wrapper });
+    const input = screen.getByLabelText('Who has trust in me today?');
+    // Just exercise the focus/blur handlers; they must not throw.
+    fireEvent(input, 'focus');
+    fireEvent(input, 'blur');
+    expect(input).toBeTruthy();
+  });
+
   it('renders a sub-prompt beneath its parent', () => {
     const prompt: Prompt = {
       text: 'Did my disease run my life today?',

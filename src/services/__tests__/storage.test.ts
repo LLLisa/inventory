@@ -87,6 +87,18 @@ describe('storage (native)', () => {
     expect(remaining).toHaveLength(1);
     expect(remaining.find((e) => e.id === first.id)).toBeUndefined();
   });
+
+  it('swallows a write failure when saving a draft', async () => {
+    const spy = jest.spyOn(AsyncStorage, 'setItem').mockRejectedValueOnce(new Error('quota'));
+    await expect(storage.saveDraft(createEmptyAnswers())).resolves.toBeUndefined();
+    spy.mockRestore();
+  });
+
+  it('returns null when reading a draft fails', async () => {
+    const spy = jest.spyOn(AsyncStorage, 'getItem').mockRejectedValueOnce(new Error('io'));
+    expect(await storage.loadDraft()).toBeNull();
+    spy.mockRestore();
+  });
 });
 
 describe('storage (web)', () => {

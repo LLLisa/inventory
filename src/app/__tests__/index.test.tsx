@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
-import { Linking } from 'react-native';
+import { Linking, Platform } from 'react-native';
 
 const mockLink = jest.fn();
 jest.mock('expo-router', () => {
@@ -52,5 +52,25 @@ describe('menu (index)', () => {
     mockStorage.STORAGE_ENABLED = false;
     render(<MenuScreen />);
     expect(mockLink).not.toHaveBeenCalledWith('/history');
+  });
+
+  describe('web layout', () => {
+    const originalOS = Platform.OS;
+    beforeEach(() => {
+      (Platform as { OS: string }).OS = 'web';
+      mockStorage.STORAGE_ENABLED = false;
+    });
+    afterEach(() => {
+      (Platform as { OS: string }).OS = originalOS;
+    });
+
+    it('shows the tagline hero and app-store badges on web', () => {
+      render(<MenuScreen />);
+      expect(
+        screen.getByText(/private, anonymous daily tenth-step inventory/i),
+      ).toBeTruthy();
+      expect(screen.getByText('App Store')).toBeTruthy();
+      expect(screen.getByText('Google Play')).toBeTruthy();
+    });
   });
 });

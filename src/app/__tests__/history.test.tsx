@@ -78,6 +78,17 @@ describe('history (native)', () => {
     expect(screen.getByText('Calmly')).toBeTruthy();
   });
 
+  it('shows "No responses recorded." for an all-blank entry', async () => {
+    mockStorage.loadEntries.mockResolvedValue([
+      entry('1', { 'Am I clean today?': '', 'How have I acted differently?': '   ' }),
+    ]);
+    render(<HistoryScreen />);
+
+    await waitFor(() => expect(screen.getByText('0 responses')).toBeTruthy());
+    fireEvent.press(screen.getByText('0 responses'));
+    expect(screen.getByText('No responses recorded.')).toBeTruthy();
+  });
+
   it('deletes an entry', async () => {
     mockStorage.loadEntries.mockResolvedValue([entry('1', { 'Am I clean today?': 'yes' })]);
     render(<HistoryScreen />);

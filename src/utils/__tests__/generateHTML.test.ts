@@ -40,4 +40,19 @@ describe('generateHTML', () => {
       expect(html).toContain(page.title);
     }
   });
+
+  it('relabels the free-form Notes prompt with a colon', () => {
+    const html = generateHTML(createEmptyAnswers(), date);
+    expect(html).toContain('Notes:');
+  });
+
+  it('treats a missing answer key as an empty response', () => {
+    // A sparse answers object (no keys at all) must not throw.
+    expect(() => generateHTML({}, date)).not.toThrow();
+  });
+
+  it('defaults the date to today when omitted', () => {
+    const html = generateHTML(createEmptyAnswers());
+    expect(html).toContain(new Date().toDateString());
+  });
 });

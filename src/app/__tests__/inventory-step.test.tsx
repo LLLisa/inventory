@@ -1,5 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import { type ReactNode } from 'react';
+import { fireGestureHandler, getByGestureTestId } from 'react-native-gesture-handler/jest-utils';
+import { type PanGesture } from 'react-native-gesture-handler';
 
 import { LAST_PAGE } from '@/data/fullText';
 import { InventoryProvider } from '@/store/inventory';
@@ -61,6 +63,19 @@ describe('inventory/[step]', () => {
     renderStep('1');
     fireEvent.press(screen.getByText('Back'));
     expect(mockPush).toHaveBeenCalledWith('/');
+  });
+
+  it('advances on a left swipe and goes back on a right swipe', () => {
+    renderStep('2');
+    fireGestureHandler<PanGesture>(getByGestureTestId('screen-swipe'), [
+      { translationX: -120, velocityX: -600 },
+    ]);
+    expect(mockPush).toHaveBeenCalledWith('/inventory/3');
+
+    fireGestureHandler<PanGesture>(getByGestureTestId('screen-swipe'), [
+      { translationX: 120, velocityX: 600 },
+    ]);
+    expect(mockPush).toHaveBeenCalledWith('/inventory/1');
   });
 
   it('renders the finish actions on the last step', () => {

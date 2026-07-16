@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react-native';
 import { Text } from 'react-native';
+import { fireGestureHandler, getByGestureTestId } from 'react-native-gesture-handler/jest-utils';
+import { type PanGesture } from 'react-native-gesture-handler';
 
 import Screen from '@/components/Screen';
 
@@ -23,13 +25,41 @@ describe('Screen', () => {
   });
 
   it('renders children even when swipe handlers are supplied', () => {
-    // Gesture behavior itself is native-only and not simulated here; we just
-    // verify the gesture wrapper doesn't break rendering.
     render(
       <Screen onSwipeLeft={() => {}} onSwipeRight={() => {}}>
         <Text>Swipeable</Text>
       </Screen>,
     );
     expect(screen.getByText('Swipeable')).toBeTruthy();
+  });
+
+  it('fires onSwipeLeft for a clear left drag', () => {
+    const onSwipeLeft = jest.fn();
+    const onSwipeRight = jest.fn();
+    render(
+      <Screen onSwipeLeft={onSwipeLeft} onSwipeRight={onSwipeRight}>
+        <Text>Body</Text>
+      </Screen>,
+    );
+    fireGestureHandler<PanGesture>(getByGestureTestId('screen-swipe'), [
+      { translationX: -120, velocityX: -600 },
+    ]);
+    expect(onSwipeLeft).toHaveBeenCalledTimes(1);
+    expect(onSwipeRight).not.toHaveBeenCalled();
+  });
+
+  it('fires onSwipeRight for a clear right drag', () => {
+    const onSwipeLeft = jest.fn();
+    const onSwipeRight = jest.fn();
+    render(
+      <Screen onSwipeLeft={onSwipeLeft} onSwipeRight={onSwipeRight}>
+        <Text>Body</Text>
+      </Screen>,
+    );
+    fireGestureHandler<PanGesture>(getByGestureTestId('screen-swipe'), [
+      { translationX: 120, velocityX: 600 },
+    ]);
+    expect(onSwipeRight).toHaveBeenCalledTimes(1);
+    expect(onSwipeLeft).not.toHaveBeenCalled();
   });
 });

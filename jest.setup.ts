@@ -27,6 +27,32 @@ jest.mock(
   () => require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
 );
 
+// Safe-area context ships a Jest mock with fixed insets.
+jest.mock('react-native-safe-area-context', () =>
+  require('react-native-safe-area-context/jest/mock').default,
+);
+
+// <Head> writes to the document head on web; in tests, render its children
+// inline so <title>/<meta>/<link> become inspectable host nodes.
+jest.mock('expo-router/head', () => {
+  const React = require('react');
+  return {
+    __esModule: true,
+    default: ({ children }: { children: React.ReactNode }) =>
+      React.createElement(React.Fragment, null, children),
+  };
+});
+
+// Vector icons pull in native font loading; stub every icon set as a host node.
+jest.mock('@expo/vector-icons', () => {
+  const React = require('react');
+  const Icon = (props: Record<string, unknown>) => React.createElement('Icon', props);
+  return new Proxy(
+    { __esModule: true },
+    { get: (target, key) => (key in target ? (target as never)[key] : Icon) },
+  );
+});
+
 // Android-only navigation bar calls are no-ops in tests.
 jest.mock('expo-navigation-bar', () => ({
   setButtonStyleAsync: jest.fn(() => Promise.resolve()),

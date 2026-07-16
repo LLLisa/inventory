@@ -21,12 +21,16 @@ export function generateStaticParams(): { step: string }[] {
 // so we can slide the new page in from the correct side.
 let lastStep = 0;
 
+/**
+ * Validates the route param, then delegates to <InventoryStepView>. Keeping the
+ * invalid branch here (before any step-specific hooks) means the hooks in the
+ * view below always run in the same order — no conditional-hook violation.
+ */
 export default function InventoryStep() {
-  const router = useRouter();
   const { step: stepParam } = useLocalSearchParams<{ step: string }>();
   const step = Number(stepParam);
-
   const isValid = /^\d+$/.test(stepParam ?? '') && step >= 0 && step <= LAST_PAGE;
+
   if (!isValid) {
     return (
       <Screen>
@@ -39,6 +43,12 @@ export default function InventoryStep() {
       </Screen>
     );
   }
+
+  return <InventoryStepView step={step} />;
+}
+
+function InventoryStepView({ step }: { step: number }) {
+  const router = useRouter();
 
   const page = fullText[step];
   const isIntro = step === 0;

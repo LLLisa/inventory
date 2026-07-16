@@ -8,7 +8,7 @@ device**. You can download a PDF of any inventory.
 
 ## Stack
 
-Universal **Expo (SDK 57) + Expo Router** app — one TypeScript codebase targets **web,
+Universal **Expo (SDK 54) + Expo Router** app — one TypeScript codebase targets **web,
 iOS, and Android**.
 
 - **Web** is a statically-rendered site (`web.output: "static"` in `app.json`), so every

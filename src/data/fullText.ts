@@ -1,7 +1,7 @@
 /**
  * The full text of the NA Daily Inventory, taken from NA Informational
  * Pamphlet #9, "Living the Program". Content is copyright Narcotics Anonymous
- * World Services, Inc. Ported verbatim from the legacy `src/utils/fullText.js`.
+ * World Services, Inc. Ported verbatim from the legacy site's inventory text.
  *
  * Page 0 is the intro (plain text only). Pages 1–5 are the "Just for today…"
  * question sections. Page 6 is the closing prayer + free-form Notes.

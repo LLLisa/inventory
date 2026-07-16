@@ -1,6 +1,6 @@
 import { Link, Redirect, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import Button from '@/components/Button';
 import Screen from '@/components/Screen';
@@ -49,7 +49,14 @@ function EntryCard({ entry, onDelete }: { entry: Entry; onDelete: (id: string) =
           <View style={styles.cardActions}>
             <Button
               label="Download PDF"
-              onPress={() => exportInventoryPdf(entry.answers).catch(() => {})}
+              onPress={() =>
+                exportInventoryPdf(entry.answers).catch(() =>
+                  Alert.alert(
+                    "Couldn't create the PDF",
+                    'Your device was unable to generate or share the file. Please try again.',
+                  ),
+                )
+              }
               style={styles.cardAction}
             />
             <Button

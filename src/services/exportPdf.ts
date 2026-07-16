@@ -18,11 +18,12 @@ export async function exportInventoryPdf(answers: Answers): Promise<void> {
   const html = generateHTML(answers, date);
 
   const { uri } = await Print.printToFileAsync({ html });
-  if (await Sharing.isAvailableAsync()) {
-    await Sharing.shareAsync(uri, {
-      mimeType: 'application/pdf',
-      dialogTitle: `Daily Inventory for ${date}`,
-      UTI: 'com.adobe.pdf',
-    });
+  if (!(await Sharing.isAvailableAsync())) {
+    throw new Error('Sharing is not available on this device.');
   }
+  await Sharing.shareAsync(uri, {
+    mimeType: 'application/pdf',
+    dialogTitle: `Daily Inventory for ${date}`,
+    UTI: 'com.adobe.pdf',
+  });
 }

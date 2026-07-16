@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 
 import Button from '@/components/Button';
 import { Colors, Spacing } from '@/constants/theme';
@@ -16,13 +16,15 @@ export default function FinishActions({ onBack }: { onBack: () => void }) {
   const router = useRouter();
   const { answers, saveEntry } = useInventory();
   const [busy, setBusy] = useState(false);
-  const [saved, setSaved] = useState(false);
 
   const handleDownload = async () => {
     try {
       await exportInventoryPdf(answers);
     } catch {
-      // Print/share dismissed or unavailable — nothing to recover.
+      Alert.alert(
+        "Couldn't create the PDF",
+        'Your device was unable to generate or share the file. Please try again.',
+      );
     }
   };
 
@@ -30,8 +32,10 @@ export default function FinishActions({ onBack }: { onBack: () => void }) {
     setBusy(true);
     try {
       await saveEntry();
-      setSaved(true);
+      // The saved entry is shown on the history screen, which is the confirmation.
       router.push('/history');
+    } catch {
+      Alert.alert("Couldn't save", 'Your entry could not be saved to this device.');
     } finally {
       setBusy(false);
     }
@@ -53,10 +57,10 @@ export default function FinishActions({ onBack }: { onBack: () => void }) {
       ) : (
         <>
           <Button
-            label={saved ? 'Saved ✓' : 'Save to my history'}
+            label={busy ? 'Saving…' : 'Save to my history'}
             variant="outline"
             onPress={handleSave}
-            disabled={busy || saved}
+            disabled={busy}
             style={styles.button}
           />
           <Text style={styles.note}>

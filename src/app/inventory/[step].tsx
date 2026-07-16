@@ -84,7 +84,7 @@ export default function InventoryStep() {
         <Button label="Begin" onPress={() => router.push('/inventory/1')} style={styles.begin} />
       ) : isLast ? (
         <FinishActions onBack={() => router.push(`/inventory/${step - 1}`)} />
-      ) : Platform.OS === 'web' ? (
+      ) : (
         <View style={styles.navRow}>
           <Button
             label="Back"
@@ -98,7 +98,7 @@ export default function InventoryStep() {
             style={styles.navButton}
           />
         </View>
-      ) : null}
+      )}
 
       <CopyrightNote text={inventoryCopyright} />
     </>
@@ -171,6 +171,10 @@ const styles = StyleSheet.create({
   },
   navButton: {
     flex: 1,
+    // Shorter than the default 48pt button — these are lightweight page-turners
+    // (native also has swipe), so they don't need a full-height tap target.
+    minHeight: 40,
+    paddingVertical: Spacing.xs,
   },
   invalid: {
     alignItems: 'center',

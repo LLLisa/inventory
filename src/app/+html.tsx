@@ -40,6 +40,18 @@ export default function Root({ children }: PropsWithChildren) {
 
 const globalStyles = `
 html, body, #root { height: 100%; }
+/*
+ * The react-native-web reset only sets the -webkit-/-ms- prefixes, so Firefox
+ * (which reads the unprefixed property) falls back to "auto" and inflates text
+ * on small screens — making fonts larger than Chrome and pushing the header
+ * title under the nav arrows. Pin all variants to 100% so every browser renders
+ * the designed pixel sizes.
+ */
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 body {
   background-color: #f4f4f4;
   overscroll-behavior-y: none;

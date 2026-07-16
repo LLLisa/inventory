@@ -12,7 +12,6 @@ import {
 
 import { Colors, Spacing } from '@/constants/theme';
 import { promptType, type Prompt } from '@/data/fullText';
-import { useIsLarge } from '@/hooks/useResponsive';
 import { useInventory } from '@/store/inventory';
 
 // react-native-web adds `hovered`/`focused` to the Pressable state; not in the
@@ -72,8 +71,6 @@ function TextField({ promptKey, big, tall }: { promptKey: string; big?: boolean;
 
 /** Renders one prompt (and its optional follow-up) according to its type. */
 export default function PromptField({ prompt, tall }: { prompt: Prompt; tall?: boolean }) {
-  const isLarge = useIsLarge();
-
   if (prompt.type === promptType.plainText) {
     return <Text style={styles.plain}>{prompt.text}</Text>;
   }
@@ -83,19 +80,13 @@ export default function PromptField({ prompt, tall }: { prompt: Prompt; tall?: b
   return (
     <View style={styles.card}>
       {isYesNo ? (
-        isLarge ? (
-          // Wide: question and answer share a row.
-          <View style={styles.yesNoInline}>
-            <Text style={[styles.label, styles.labelInline]}>{prompt.text}</Text>
-            <YesNo promptKey={prompt.text} />
-          </View>
-        ) : (
-          // Narrow: answer drops to its own right-aligned row (no left wrap).
-          <>
-            <Text style={styles.label}>{prompt.text}</Text>
-            <YesNo promptKey={prompt.text} style={styles.yesNoRight} />
-          </>
-        )
+        // Question and answer share a row at every width; the label wraps as
+        // needed while the buttons stay right-aligned. Keeps short yes/no cards
+        // compact instead of leaving dead space above a dropped-down answer row.
+        <View style={styles.yesNoInline}>
+          <Text style={[styles.label, styles.labelInline]}>{prompt.text}</Text>
+          <YesNo promptKey={prompt.text} />
+        </View>
       ) : (
         <>
           <Text style={styles.label}>{prompt.text}</Text>
@@ -136,7 +127,7 @@ const styles = StyleSheet.create({
     marginTop: Spacing.md,
   },
   label: {
-    fontSize: 17,
+    fontSize: 19,
     color: Colors.text,
     marginBottom: Spacing.sm,
   },
@@ -146,8 +137,8 @@ const styles = StyleSheet.create({
     marginRight: Spacing.md,
   },
   plain: {
-    fontSize: 16,
-    lineHeight: 24,
+    fontSize: 18,
+    lineHeight: 26,
     color: Colors.text,
     marginBottom: Spacing.md,
   },
@@ -158,7 +149,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bgWhite,
     paddingHorizontal: Spacing.sm,
     paddingVertical: Spacing.sm,
-    fontSize: 16,
+    fontSize: 18,
     color: Colors.text,
   },
   inputBig: {
@@ -183,10 +174,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: Spacing.sm,
   },
-  yesNoRight: {
-    alignSelf: 'flex-end',
-    marginTop: Spacing.sm,
-  },
   yesNoButton: {
     minWidth: 64,
     paddingVertical: Spacing.sm,
@@ -203,7 +190,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.blue,
   },
   yesNoText: {
-    fontSize: 16,
+    fontSize: 18,
     color: Colors.blue,
     fontWeight: '600',
   },

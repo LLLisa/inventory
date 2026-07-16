@@ -32,7 +32,7 @@ export default function ReadingView({ reading, description }: ReadingViewProps) 
   };
 
   return (
-    <Screen>
+    <Screen contentStyle={styles.content}>
       <Seo path={path} title={`Step Ten — ${reading.source}`} description={description} jsonLd={jsonLd} />
 
       <Text
@@ -61,6 +61,11 @@ export default function ReadingView({ reading, description }: ReadingViewProps) 
 }
 
 const styles = StyleSheet.create({
+  // A little breathing room so the reading text isn't flush to the screen edge
+  // on narrow viewports (on top of Screen's small base padding).
+  content: {
+    paddingHorizontal: Spacing.md,
+  },
   h1: {
     fontSize: 26,
     fontWeight: 'bold',

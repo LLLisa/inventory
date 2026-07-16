@@ -39,11 +39,3 @@ yarn-error.*
 # generated native folders
 /ios
 /android
-
-# legacy (pre-Expo) app — kept for reference, but never commit its build/secrets
-legacy/node_modules/
-legacy/dist/
-legacy/secrets/
-legacy/notes.js
-legacy/notes.md
-legacy/package-lock.json

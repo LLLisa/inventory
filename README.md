@@ -34,7 +34,6 @@ src/
   store/               inventory.tsx (answers context + draft autosave)
   constants/theme.ts   Brand palette + spacing
 public/                robots.txt, sitemap.xml, manifest.json, icons
-legacy/                The previous webpack/React SPA, kept for reference
 ```
 
 ## Develop

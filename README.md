@@ -26,7 +26,7 @@ src/
     index.tsx          Menu / landing
     inventory/[step].tsx   The inventory form (steps 0–6, pre-rendered)
     basic-text.tsx / it-works.tsx   Step 10 reading pages
-    about.tsx / install.tsx / history.tsx
+    about.tsx / history.tsx
     bt.tsx / gg.tsx    Redirects from legacy URLs
   components/          Header, Footer, Screen, Seo, PromptField, Button, …
   data/                fullText.ts (inventory content), readings.ts

@@ -10,13 +10,15 @@ interface SeoProps {
   path: string;
   /** Optional JSON-LD structured data object. */
   jsonLd?: Record<string, unknown>;
+  /** Emit robots `noindex` and skip the canonical link (e.g. the 404 page). */
+  noindex?: boolean;
 }
 
 /**
  * Per-route web metadata. Renders real <head> tags during static export so each
  * page is independently indexable. No-op on native.
  */
-export default function Seo({ title, description, path, jsonLd }: SeoProps) {
+export default function Seo({ title, description, path, jsonLd, noindex }: SeoProps) {
   const canonical = `${SITE_URL}${path === '/' ? '' : path}`;
   const fullTitle = path === '/' ? title : `${title} · ${SITE_NAME}`;
 
@@ -24,7 +26,11 @@ export default function Seo({ title, description, path, jsonLd }: SeoProps) {
     <Head>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={canonical} />
+      {noindex ? (
+        <meta name="robots" content="noindex" />
+      ) : (
+        <link rel="canonical" href={canonical} />
+      )}
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />

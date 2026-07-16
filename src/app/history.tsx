@@ -88,7 +88,10 @@ function HistoryList() {
 
   const handleDelete = useCallback(
     (id: string) => {
-      deleteEntry(id).then(refresh);
+      // Swallow a failed delete (storage error) but still refresh from disk.
+      deleteEntry(id)
+        .catch(() => {})
+        .then(refresh);
     },
     [refresh],
   );

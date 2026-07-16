@@ -10,7 +10,7 @@ import {
   type ViewStyle,
 } from 'react-native';
 
-import { Colors, Spacing } from '@/constants/theme';
+import { Colors, Shadows, Spacing } from '@/constants/theme';
 import { promptType, type Prompt } from '@/data/fullText';
 import { useInventory } from '@/store/inventory';
 
@@ -112,16 +112,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: Spacing.md,
     marginBottom: Spacing.md,
-    ...Platform.select({
-      web: { boxShadow: '0 1px 3px rgba(0,0,0,0.07)' },
-      default: {
-        elevation: 1,
-        shadowColor: '#000',
-        shadowOpacity: 0.07,
-        shadowRadius: 3,
-        shadowOffset: { width: 0, height: 1 },
-      },
-    }),
+    ...Shadows.card,
   },
   sub: {
     marginTop: Spacing.md,

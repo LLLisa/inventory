@@ -4,6 +4,8 @@
  * identity (NA blue on off-white) carries over unchanged.
  */
 
+import { Platform } from 'react-native';
+
 export const Colors = {
   /** Primary NA blue — header, buttons, links */
   blue: 'rgb(0, 0, 255)',
@@ -34,3 +36,20 @@ export const MaxContentWidth = 775;
 export const HeaderHeight = 72;
 
 export const FontFamily = 'Arial, Helvetica, sans-serif';
+
+/**
+ * The subtle elevation shared by the white content cards (menu cards, question
+ * cards, history cards). Spread into a card style: `...Shadows.card`.
+ */
+export const Shadows = {
+  card: Platform.select({
+    web: { boxShadow: '0 1px 3px rgba(0,0,0,0.07)' },
+    default: {
+      elevation: 1,
+      shadowColor: '#000',
+      shadowOpacity: 0.07,
+      shadowRadius: 3,
+      shadowOffset: { width: 0, height: 1 },
+    },
+  }),
+} as const;

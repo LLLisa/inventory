@@ -8,7 +8,7 @@ import { Colors, Spacing } from '@/constants/theme';
 export default function NotFoundScreen() {
   return (
     <Screen>
-      <Seo path="/404" title="Page Not Found" description="This page could not be found." />
+      <Seo path="/404" title="Page Not Found" description="This page could not be found." noindex />
       <View style={styles.container}>
         <Text style={styles.heading}>Page not found</Text>
         <Text style={styles.body}>The page you were looking for isn&apos;t here.</Text>

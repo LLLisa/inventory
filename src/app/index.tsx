@@ -5,7 +5,7 @@ import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { MetaLink } from '@/components/MenuLink';
 import Screen from '@/components/Screen';
 import Seo, { SITE_NAME, SITE_URL } from '@/components/Seo';
-import { Colors, Spacing } from '@/constants/theme';
+import { Colors, Shadows, Spacing } from '@/constants/theme';
 import { STORAGE_ENABLED } from '@/services/storage';
 
 // react-native-web adds `hovered` to the Pressable state (not in core RN types).
@@ -130,18 +130,6 @@ export default function MenuScreen() {
   );
 }
 
-// Matches the subtle shadow used on the question cards (PromptField).
-const cardShadow = Platform.select({
-  web: { boxShadow: '0 1px 3px rgba(0,0,0,0.07)' },
-  default: {
-    elevation: 1,
-    shadowColor: '#000',
-    shadowOpacity: 0.07,
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 1 },
-  },
-});
-
 const styles = StyleSheet.create({
   hero: {
     alignItems: 'center',
@@ -169,7 +157,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bgWhite,
     borderWidth: 1,
     borderColor: Colors.borderGray,
-    ...cardShadow,
+    ...Shadows.card,
   },
   cardActive: {
     borderColor: Colors.blue,

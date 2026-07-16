@@ -1,6 +1,7 @@
 /**
  * Builds a self-contained HTML document from a completed inventory, used as the
- * source for PDF export (expo-print on native, browser print on web).
+ * source for the native PDF export (expo-print). The web export builds its PDF
+ * directly with jsPDF instead (see exportPdf.web.ts).
  *
  * Iterates the `fullText` structure directly so section headings and question
  * order always match the on-screen form.
@@ -75,5 +76,3 @@ export function generateHTML(answers: Answers, date: string = new Date().toDateS
 </body>
 </html>`;
 }
-
-export default generateHTML;

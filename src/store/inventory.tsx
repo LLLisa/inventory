@@ -14,12 +14,8 @@ import { addEntry, clearDraft, loadDraft, saveDraft, STORAGE_ENABLED } from '@/s
 interface InventoryContextValue {
   answers: Answers;
   setAnswer: (key: string, value: string) => void;
-  /** Clear all answers back to empty (e.g. after starting a new day). */
-  reset: () => void;
   /** Persist the current answers to on-device history, then clear the draft. */
   saveEntry: () => Promise<void>;
-  /** True once the user has typed anything — used to guard navigation away. */
-  isDirty: boolean;
 }
 
 const InventoryContext = createContext<InventoryContextValue | null>(null);
@@ -31,7 +27,6 @@ const InventoryContext = createContext<InventoryContextValue | null>(null);
  */
 export function InventoryProvider({ children }: { children: ReactNode }) {
   const [answers, setAnswers] = useState<Answers>(createEmptyAnswers);
-  const [isDirty, setIsDirty] = useState(false);
   const [hydrated, setHydrated] = useState(false);
 
   // Restore any saved draft on first mount (native only — the web stores nothing).
@@ -57,24 +52,17 @@ export function InventoryProvider({ children }: { children: ReactNode }) {
 
   const setAnswer = useCallback((key: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [key]: value }));
-    setIsDirty(true);
-  }, []);
-
-  const reset = useCallback(() => {
-    setAnswers(createEmptyAnswers());
-    setIsDirty(false);
   }, []);
 
   const saveEntry = useCallback(async () => {
     await addEntry(answers);
     await clearDraft();
     setAnswers(createEmptyAnswers());
-    setIsDirty(false);
   }, [answers]);
 
   const value = useMemo(
-    () => ({ answers, setAnswer, reset, saveEntry, isDirty }),
-    [answers, setAnswer, reset, saveEntry, isDirty],
+    () => ({ answers, setAnswer, saveEntry }),
+    [answers, setAnswer, saveEntry],
   );
 
   return <InventoryContext.Provider value={value}>{children}</InventoryContext.Provider>;

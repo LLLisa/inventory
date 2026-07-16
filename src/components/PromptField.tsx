@@ -127,13 +127,15 @@ const styles = StyleSheet.create({
     // question claim the full row and drop the buttons to a right-aligned line
     // below, instead of wrapping into a cramped column beside them.
     //
-    // `flexShrink: 0` is required for parity on native: web breaks the flex
-    // line from the label's max-content basis, but Yoga would otherwise shrink
-    // the text in place (never overflowing, never wrapping the row) and leave
-    // the question boxed beside the buttons. Forbidding the shrink forces the
-    // same wrap-to-full-width behavior on both platforms.
+    // flexShrink diverges by platform. On web the label must stay shrinkable
+    // (1): the flex line still breaks from its max-content basis, and once the
+    // buttons wrap below, the lone label shrinks to the container and wraps its
+    // text. With shrink:0 it instead keeps its full width and overflows the row
+    // — leftward, since the row is justifyContent:flex-end. On native, Yoga
+    // won't break the line from the basis alone, so it needs shrink:0 to force
+    // the wrap rather than boxing the text beside the buttons.
     flexGrow: 1,
-    flexShrink: 0,
+    flexShrink: Platform.OS === 'web' ? 1 : 0,
     flexBasis: 'auto',
     marginBottom: 0,
   },
